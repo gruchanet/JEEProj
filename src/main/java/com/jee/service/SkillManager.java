@@ -34,4 +34,15 @@ public class SkillManager {
 		return em.createNamedQuery("skill.all").getResultList();
 	}
 	
+	/*
+	public List<Player> getPlayers(Skill skill) {
+		skill = em.find(Skill.class, skill.getId());
+		
+		// lazy loading //
+		List<Player> players = new ArrayList<Player>(skill.getPlayers());
+		return players;
+	}
+	*/
+	
+	/* deleteSkillFromPlayer */
 }

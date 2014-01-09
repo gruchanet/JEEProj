@@ -21,12 +21,6 @@ public class BuffPlayerManager {
 		return player.getSkills();
 	}
 	
-	public Set<Player> getPlayers(Skill skill) {
-		skill = em.find(Skill.class, skill.getId());
-		
-		return skill.getPlayers();
-	}
-	
 	public void buffPlayer(Long idPlayer, Long idSkill) {
 		Player player = em.find(Player.class, idPlayer);
 		Skill skill = em.find(Skill.class, idSkill);

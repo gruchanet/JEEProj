@@ -17,7 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@NamedQueries({ 
+@NamedQueries({
 	@NamedQuery(name = "account.all", query = "SELECT acc FROM Account acc")
 })
 public class Account {
@@ -74,12 +74,18 @@ public class Account {
 	}
 	
 	// lazy loading //
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // mappedBy="Account"
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
+			mappedBy="account", targetEntity=Player.class) // mappedBy="Account"
 	public List<Player> getPlayers() {
 		return players;
 	}
-	public void setCars(List<Player> players) {
+
+	public void setPlayers(List<Player> players) {
 		this.players = players;
+	}
+	
+	public void addPlayer(Player player) {
+		players.add(player);
 	}
 
 }

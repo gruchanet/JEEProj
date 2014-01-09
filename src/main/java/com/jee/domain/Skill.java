@@ -14,7 +14,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity
-@NamedQueries({ 
+@NamedQueries({
 	@NamedQuery(name = "skill.all", query = "SELECT s FROM Skill s")
 })
 public class Skill {
@@ -47,11 +47,9 @@ public class Skill {
 		return type;
 	}
 	
-	/*
-	public SkillType setType(SkillType type) {
+	public void setType(SkillType type) {
 		this.type = type;
 	}
-	*/
 	
 	// lazy loading //
 	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY,

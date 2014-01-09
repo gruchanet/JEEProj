@@ -1,6 +1,5 @@
 package com.jee.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -11,43 +10,25 @@ import com.jee.domain.Account;
 import com.jee.domain.Player;
 
 @Stateless
-public class AccountManager {
+public class PlayerPinnerManager {
 	
 	@PersistenceContext
 	EntityManager em;
 	
-	public void addAccount(Account account) {
-		account.setId(null);
-		em.persist(account);
-	}
-
-	public void deleteAccount(Account account) {
-		account = em.find(Account.class, account.getId());
-		em.remove(account);
-	}
-
 	@SuppressWarnings("unchecked")
-	public List<Account> getAllAccounts() {
-		return em.createNamedQuery("account.all").getResultList();
+	public List<Player> getUnsetPlayers() {
+		return em.createNamedQuery("player.unset").getResultList();
 	}
 
-	public List<Player> getPlayers(Account account) {
-		account = em.find(Account.class, account.getId());
+	public void pinPlayer(Long idAccount, Long idPlayer) {
+		Account account = em.find(Account.class, idAccount);
+		Player player = em.find(Player.class, idPlayer);
 		
-		// lazy loading //
-		List<Player> players = new ArrayList<Player>(account.getPlayers());
-		return players;
+		account.getPlayers().add(player);
+		player.setAccount(account);
 	}
 	
 	/*
-	public void addPlayer(Account account, Player player) {
-		account = em.find(Account.class, account.getId());
-		player = em.find(Player.class, player.getId());
-		
-		account.getPlayers().add(player);
-	}
-	*/
-	
 	public boolean disposePlayer(Account account, Player player) {
 		account = em.find(Account.class, account.getId());
 		player = em.find(Player.class, player.getId());
@@ -63,12 +44,12 @@ public class AccountManager {
 		
 		if (toRemove != null) {
 			account.getPlayers().remove(toRemove);
-			player.setAccount(null);
 			
 			return true;
 		}
 		
 		return false;
 	}
+	*/
 	
 }

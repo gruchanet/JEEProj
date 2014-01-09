@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+
+	<ui:define name="content">
+		<h:form>
+			<h:dataTable value="#{playerBean.allPlayers}" var="item">
+				<f:facet name="header">#{msg.playerAllLabel}</f:facet>
+				<h:column>
+					<f:facet name="header">#{msg.playerNameLabel}</f:facet>
+					<h:outputText value="#{item.name}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">#{msg.playerAccountLabel}</f:facet>
+					<h:outputText value="#{item.account.login}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">#{msg.playerLevelLabel}</f:facet>
+					<h:outputText value="#{item.level}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">#{msg.playerGoldLabel}</f:facet>
+					<h:outputText value="#{item.gold}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">#{msg.action}</f:facet>
+					<h:commandLink value="#{msg.actionDelete}"
+						action="#{playerBean.deletePlayer}" />
+					<h:commandLink value=" #{msg.playerSkillsLabel} "
+						action="#{playerBean.showSkills}"/>
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

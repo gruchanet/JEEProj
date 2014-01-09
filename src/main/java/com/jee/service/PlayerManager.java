@@ -30,10 +30,12 @@ public class PlayerManager {
 		return em.createNamedQuery("player.all").getResultList();
 	}
 	
+	/*
 	@SuppressWarnings("unchecked")
 	public List<Player> getUnsetPlayers() {
 		return em.createNamedQuery("player.unset").getResultList();
 	}
+	*/
 	
 	public Account getAccount(Player player) {
 		player = em.find(Player.class, player.getId());
@@ -41,6 +43,15 @@ public class PlayerManager {
 		// lazy loading //
 		Account account = player.getAccount();
 		return account;
+	}
+	
+	/*
+	public List<Skill> getSkills(Player player) {
+		player = em.find(Player.class, player.getId());
+		
+		// lazy loading //
+		List<Skill> skills = new ArrayList<Skill>(player.getSkills());
+		return skills;
 	}
 	
 	public void pinAccount(Long idPlayer, Long idAccount) {
@@ -51,6 +62,7 @@ public class PlayerManager {
 			account.getPlayers().add(player);
 		}
 	}
+	*/
 	
 	public void unpinAccount(Player player) {
 		player = em.find(Player.class, player.getId());

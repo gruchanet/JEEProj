@@ -11,25 +11,49 @@
 			<h:outputText value="#{msg.linkHome}" />
 		  </h:commandLink>
 		</li>
-		<li>
-		  <h:commandLink action="add?faces-redirect=true">
-			<h:outputText value="#{msg.personAddLabel}" />
-		  </h:commandLink></li>
-		  		<li>
+	  </ul>
+		<hr />
+	  <ul>
+  		<li>
 		  <h:commandLink action="addAccount?faces-redirect=true">
-			<h:outputText value="Add GAME!" />
-		  </h:commandLink></li>
+			<h:outputText value="#{msg.accountAddLabel}" />
+		  </h:commandLink>
+		</li>
+  		<li>
+		  <h:commandLink action="addPlayer?faces-redirect=true">
+			<h:outputText value="#{msg.playerAddLabel}" />
+		  </h:commandLink>
+		</li>
+  		<li>
+		  <h:commandLink action="addSkill?faces-redirect=true">
+			<h:outputText value="#{msg.skillAddLabel}" />
+		  </h:commandLink>
+		</li>
+		<br />
+  		<li>
+		  <h:commandLink action="pinPlayer?faces-redirect=true">
+			<h:outputText value="#{msg.playerPinLabel}" />
+		  </h:commandLink>
+		</li>
+	  </ul>
+		<hr />
+	  <ul>
 		<li>
-		  <h:commandLink action="showPersons?faces-redirect=true">
-			 <h:outputText value="#{msg.personAllLabel}" />
+		  <h:commandLink action="showAccounts?faces-redirect=true"> <!-- #DETAILS# Account PLAYERS [rowdata]-->
+			 <h:outputText value="#{msg.accountShowAll}" />
 		  </h:commandLink>
 		</li>
 		<li>
-		  <h:commandLink action="sell">
-			 <h:outputText value=" Sell car" />
+		  <h:commandLink action="showPlayers?faces-redirect=true"> <!-- #DETAILS# Player ACCOUNT | Player SKILLS [rowdata]-->
+			 <h:outputText value="#{msg.playerShowAll}" />
 		  </h:commandLink>
 		</li>
-	</ul>
+		<li>
+		  <h:commandLink action="showSkills?faces-redirect=true"> <!-- #DETAILS# PLAYERS that has Skills [rowdata]-->
+			 <h:outputText value="#{msg.skillShowAll}" />
+		  </h:commandLink>
+		</li>
+	  </ul>
    </h:form>
   </div>
 </ui:composition>

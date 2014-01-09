@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+
+	<ui:define name="content">
+		<h:form>
+			<h:dataTable value="#{accountBean.allAccounts}" var="item">
+				<f:facet name="header">#{msg.accountAllLabel}</f:facet>
+				<h:column>
+					<f:facet name="header">#{msg.accountLoginLabel}</f:facet>
+					<h:outputText value="#{item.login}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">#{msg.accountPasswordLabel}</f:facet>
+					<h:outputText value="#{item.password}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">#{msg.accountCreationDateLabel}</f:facet>
+					<h:outputText value="#{item.creationDate}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">#{msg.accountPermissionsLabel}</f:facet>
+					<h:outputText value="#{item.permissions}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">#{msg.action}</f:facet>
+					<h:commandLink value="#{msg.actionDelete}"
+						action="#{accountBean.deleteAccount}" />
+					<h:commandLink value=" #{msg.accountPlayersLabel} "
+						action="#{accountBean.showPlayers}"/>
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
