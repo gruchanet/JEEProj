@@ -1,5 +1,6 @@
 package com.jee.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -8,6 +9,7 @@ import javax.persistence.PersistenceContext;
 
 import com.jee.domain.Account;
 import com.jee.domain.Player;
+import com.jee.domain.Skill;
 
 @Stateless
 public class PlayerManager {
@@ -45,7 +47,7 @@ public class PlayerManager {
 		return account;
 	}
 	
-	/*
+	
 	public List<Skill> getSkills(Player player) {
 		player = em.find(Player.class, player.getId());
 		
@@ -54,6 +56,7 @@ public class PlayerManager {
 		return skills;
 	}
 	
+	/*
 	public void pinAccount(Long idPlayer, Long idAccount) {
 		if (idPlayer != null && idAccount != null) {
 			Player player = em.find(Player.class, idPlayer);
@@ -68,6 +71,13 @@ public class PlayerManager {
 		player = em.find(Player.class, player.getId());
 		
 		player.setAccount(null);
+	}
+	
+	public void unbuffPlayer(Player player, Skill skill) {
+		player = em.find(Player.class, player.getId());
+		skill = em.find(Skill.class, skill.getId());
+		
+		player.getSkills().remove(skill); // skill.getPlayers().remove(player) ??
 	}
 	
 }

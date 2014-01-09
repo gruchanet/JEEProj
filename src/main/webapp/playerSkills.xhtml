@@ -7,25 +7,22 @@
 
 	<ui:define name="content">
 		<h:form>
-			<h:dataTable value="#{buffPlayerBean..}" var="item">
+			<h:dataTable value="#{playerBean.playerSkills}" var="item">
 				<f:facet name="header">#{msg.playerSkillsLabel}</f:facet>
-				
-				<h:outputText value="#{item.name} " />
-
 				<h:column>
-					<f:facet name="header">#{msg.playerLevelLabel}</f:facet>
-					<h:outputText value="#{item.level}" />
+					<f:facet name="header">#{msg.skillNameLabel}</f:facet>
+					<h:outputText value="#{item.name}" />
 				</h:column>
 				
 				<h:column>
-					<f:facet name="header">#{msg.playerGoldLabel}</f:facet>
-					<h:outputText value="#{item.gold}" />
+					<f:facet name="header">#{msg.skillTypeLabel}</f:facet>
+					<h:outputText value="#{item.type.desc}" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">#{msg.action}</f:facet>
 					<h:commandLink value="#{msg.actionDelete}"
-						action="#{accountBean.disposePlayer}" />
+						action="#{playerBean.disposeSkill}" />
 				</h:column>
 
 			</h:dataTable>

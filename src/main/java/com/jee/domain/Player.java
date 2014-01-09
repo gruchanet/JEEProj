@@ -17,9 +17,10 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "player.skillsToGet", query = "SELECT DISTINCT s FROM Skill s "
-			+ "INNER OUTER JOIN Player_Skill ps ON ps.skills_id = s.id"
-			+ "INNER JOIN"),
+	/*@NamedQuery(name = "player.skillsToGet", query = "SELECT DISTINCT s FROM Skill s "
+			+ "OUTER JOIN Player_Skill ps ON ps.skills_id = s.id"
+			+ "INNER JOIN Player p ON ps.players.id = p.id"
+			+ "WHERE p.id = null"),*/
 	@NamedQuery(name = "player.unset", query = "SELECT p FROM Player p WHERE p.account = null"),
 	@NamedQuery(name = "player.all", query = "SELECT p FROM Player p")
 })

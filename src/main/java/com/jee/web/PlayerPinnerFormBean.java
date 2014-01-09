@@ -19,7 +19,7 @@ public class PlayerPinnerFormBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private PlayerPinnerManager pm;
+	private PlayerPinnerManager ppm;
 
 	@Inject
 	private AccountManager am;
@@ -44,7 +44,7 @@ public class PlayerPinnerFormBean implements Serializable {
 	}
 	
 	public List<Player> getUnsetPlayers() {
-		return pm.getUnsetPlayers();
+		return ppm.getUnsetPlayers();
 	}
 
 	public List<Account> getAllAccounts() {
@@ -53,7 +53,7 @@ public class PlayerPinnerFormBean implements Serializable {
 
 	public String pinPlayer() {
 		if (idAccount != null && idPlayer != null)
-			pm.pinPlayer(idAccount, idPlayer);
+			ppm.pinPlayer(idAccount, idPlayer);
 		
 		return null;
 	}

@@ -21,17 +21,13 @@ public class BuffPlayerManager {
 		return player.getSkills();
 	}
 	
+	/* getRestOfSkills */
+	
 	public void buffPlayer(Long idPlayer, Long idSkill) {
 		Player player = em.find(Player.class, idPlayer);
 		Skill skill = em.find(Skill.class, idSkill);
 		
 		player.getSkills().add(skill); // skill.getPlayers().add(player) ??
 	}
-	
-	public void unbuffPlayer(Player player, Skill skill) {
-		player = em.find(Player.class, player.getId());
-		skill = em.find(Skill.class, skill.getId());
-		
-		player.getSkills().remove(skill); // skill.getPlayers().remove(player) ??
-	}
+
 }

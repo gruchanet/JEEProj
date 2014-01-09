@@ -8,25 +8,26 @@
 	xmlns:rich="http://richfaces.org/rich">
 
 	<ui:define name="content">
-		<h:form id="accountPlayersForm">
+		<h:form id="buffPlayerForm">
 			<h:panelGrid columns="2">
-
-				<h:outputText value=" #{msg.accountLabel} " />
-				<h:selectOneMenu value="#{playerPinnerBean.idAccount}">
-					<f:selectItems value="#{playerPinnerBean.allAccounts}" var="account"
-						itemValue="#{account.id}" itemLabel="#{account.login} [perm: #{account.permissions}]" />
-				</h:selectOneMenu>
-
 				<h:outputText value=" #{msg.playerLabel}" />
-				<h:selectOneMenu value="#{playerPinnerBean.idPlayer}">
-					<f:selectItems value="#{playerPinnerBean.unsetPlayers}" var="player"
+				<h:selectOneMenu value="#{buffPlayerBean.idPlayer}">
+					<f:selectItems value="#{playerBean.playerDummy}" var="player"
 						itemValue="#{player.id}" itemLabel="#{player.name}" />
 				</h:selectOneMenu>
 
+			</h:panelGrid>
+		
+			<h:panelGrid columns="2">
+				<h:outputText value=" #{msg.skillLabel}" />
+				<h:selectOneMenu value="#{buffPlayerBean.idSkill}">
+					<f:selectItems value="#{buffPlayerBean.allSkills}" var="skill"
+						itemValue="#{skill.id}" itemLabel="#{skill.name} [#{skill.type}]" />
+				</h:selectOneMenu>
 
 			</h:panelGrid>
 
-			<h:commandButton value="Pin" action="#{playerPinnerBean.pinPlayer}" />
+			<h:commandButton value="Buff" action="#{buffPlayerBean.buffPlayer}" />
 
 			<h:panelGrid>
 				<h:messages id="messages" showDetail="#{true}"
