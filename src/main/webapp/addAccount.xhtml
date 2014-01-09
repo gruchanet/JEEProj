@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="content">
+		<h:form id="accountForm">
+			<h:panelGrid columns="2">
+
+				<h:outputText value="#{msg.accountLoginLabel}" />
+				<h:inputText id="login" value="#{accountBean.account.login}"
+					required="#{true}" />
+					
+				<h:outputText value="#{msg.accountPasswordLabel}" />
+				<h:inputSecret id="password" value="#{accountBean.account.password}"
+					required="#{true}" />
+
+				<h:outputText value="#{msg.accountCreationDateLabel}" />
+				<rich:calendar value="#{accountBean.account.creationDate}"
+					id="calendar" datePattern="dd/MM/yyyy" dataModel="#{pastCalendarModel}"
+					cellWidth="24px" cellHeight="22px" style="width:200px">
+				</rich:calendar>
+				
+				<h:outputText value="#{msg.accountPermissionsLabel}" />
+				<rich:inputNumberSlider id="permissions" value="#{accountBean.account.permissions}" minValue="0" 
+				maxValue="5" step="1" showTooltip="true" required="#{true}" requiredMessage="Select privileges from 0 - 5 range" converterMessage="">
+				</rich:inputNumberSlider>
+				
+			</h:panelGrid>
+
+			<h:commandButton value="#{msg.formOKButton}"
+				action="#{accountBean.addAccount}" />
+
+			<h:panelGrid>
+				<h:messages for="" />
+				<h:messages id="messages" showDetail="#{true}"
+					showSummary="#{false}" />
+			</h:panelGrid>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
