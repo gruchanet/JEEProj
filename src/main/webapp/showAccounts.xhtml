@@ -6,8 +6,8 @@
 	template="/templates/default.xhtml">
 
 	<ui:define name="content">
-		<h:form>
-			<h:dataTable value="#{accountBean.allAccounts}" var="item">
+		<h:form styleClass="tableDump">
+			<h:dataTable headerClass="tableHeader" value="#{accountBean.allAccounts}" var="item">
 				<f:facet name="header">#{msg.accountAllLabel}</f:facet>
 				<h:column>
 					<f:facet name="header">#{msg.accountLoginLabel}</f:facet>
@@ -31,10 +31,8 @@
 
 				<h:column>
 					<f:facet name="header">#{msg.action}</f:facet>
-					<h:commandLink value="#{msg.actionDelete}"
-						action="#{accountBean.deleteAccount}" />
-					<h:commandLink value=" #{msg.accountPlayersLabel} "
-						action="#{accountBean.showPlayers}"/>
+					<h:commandButton value="#{msg.actionDelete}" action="#{accountBean.deleteAccount}" />
+					<h:commandButton value="#{msg.accountPlayersLabel}" action="#{accountBean.showPlayers}" />
 				</h:column>
 
 			</h:dataTable>

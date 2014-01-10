@@ -15,7 +15,6 @@
 					<f:selectItems value="#{playerBean.playerDummy}" var="player"
 						itemValue="#{player.id}" itemLabel="#{player.name}" />
 				</h:selectOneMenu>
-
 			</h:panelGrid>
 		
 			<h:panelGrid columns="2">
@@ -24,7 +23,6 @@
 					<f:selectItems value="#{buffPlayerBean.allSkills}" var="skill"
 						itemValue="#{skill.id}" itemLabel="#{skill.name} [#{skill.type}]" />
 				</h:selectOneMenu>
-
 			</h:panelGrid>
 
 			<h:commandButton value="Buff" action="#{buffPlayerBean.buffPlayer}" />

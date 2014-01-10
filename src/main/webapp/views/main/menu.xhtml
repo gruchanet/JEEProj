@@ -6,53 +6,21 @@
   <div>
 	<h:form>
 	  <ul>
-		<li>
-		  <h:commandLink action="home?faces-redirect=true">
-			<h:outputText value="#{msg.linkHome}" />
-		  </h:commandLink>
-		</li>
+		<h:button styleClass="menuItem" outcome="home?faces-redirect=true" value="#{msg.linkHome}" />
 	  </ul>
 		<hr />
 	  <ul>
-  		<li>
-		  <h:commandLink action="addAccount?faces-redirect=true">
-			<h:outputText value="#{msg.accountAddLabel}" />
-		  </h:commandLink>
-		</li>
-  		<li>
-		  <h:commandLink action="addPlayer?faces-redirect=true">
-			<h:outputText value="#{msg.playerAddLabel}" />
-		  </h:commandLink>
-		</li>
-  		<li>
-		  <h:commandLink action="addSkill?faces-redirect=true">
-			<h:outputText value="#{msg.skillAddLabel}" />
-		  </h:commandLink>
-		</li>
+	  	<h:button styleClass="menuItem" outcome="addAccount?faces-redirect=true" value="#{msg.accountAddLabel}" />
+	  	<h:button styleClass="menuItem" outcome="addPlayer?faces-redirect=true" value="#{msg.playerAddLabel}" />
+	  	<h:button styleClass="menuItem" outcome="addSkill?faces-redirect=true" value="#{msg.skillAddLabel}" />
 		<br />
-  		<li>
-		  <h:commandLink action="pinPlayer?faces-redirect=true">
-			<h:outputText value="#{msg.playerPinLabel}" />
-		  </h:commandLink>
-		</li>
+		<h:button styleClass="menuItem" outcome="pinPlayer?faces-redirect=true" value="#{msg.playerPinLabel}" />
 	  </ul>
 		<hr />
 	  <ul>
-		<li>
-		  <h:commandLink action="showAccounts?faces-redirect=true"> <!-- #DETAILS# Account PLAYERS [rowdata]-->
-			 <h:outputText value="#{msg.accountShowAll}" />
-		  </h:commandLink>
-		</li>
-		<li>
-		  <h:commandLink action="showPlayers?faces-redirect=true"> <!-- #DETAILS# Player ACCOUNT | Player SKILLS [rowdata]-->
-			 <h:outputText value="#{msg.playerShowAll}" />
-		  </h:commandLink>
-		</li>
-		<li>
-		  <h:commandLink action="showSkills?faces-redirect=true"> <!-- #DETAILS# PLAYERS that has Skills [rowdata]-->
-			 <h:outputText value="#{msg.skillShowAll}" />
-		  </h:commandLink>
-		</li>
+	  <h:button styleClass="menuItem" outcome="showAccounts?faces-redirect=true" value="#{msg.accountShowAll}" />
+	  <h:button styleClass="menuItem" outcome="showPlayers?faces-redirect=true" value="#{msg.playerShowAll}" />
+	  <h:button styleClass="menuItem" outcome="showSkills?faces-redirect=true" value="#{msg.skillShowAll}" />
 	  </ul>
    </h:form>
   </div>
