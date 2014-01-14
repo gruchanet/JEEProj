@@ -70,7 +70,7 @@ public class Player {
 	}
 	
 	// lazy loading //
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
 	public Account getAccount() {
 		return account;
 	}
