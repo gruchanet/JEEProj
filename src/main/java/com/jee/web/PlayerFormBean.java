@@ -11,7 +11,9 @@ import javax.inject.Named;
 
 import com.jee.domain.Player;
 import com.jee.domain.Skill;
+import com.jee.domain.Stats;
 import com.jee.service.PlayerManager;
+import com.jee.service.StatsManager;
 
 @SessionScoped
 @Named("playerBean")
@@ -20,6 +22,7 @@ public class PlayerFormBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Player player = new Player();
+	private Stats stats = new Stats();
 	private ListDataModel<Player> players = new ListDataModel<Player>();
 	
 	private Player playerToShow = new Player();
@@ -31,6 +34,9 @@ public class PlayerFormBean implements Serializable {
 	@Inject
 	private PlayerManager pm;
 	
+	@Inject
+	private StatsManager sm;
+	
 	
 	public Player getPlayer() {
 		return player;
@@ -38,6 +44,14 @@ public class PlayerFormBean implements Serializable {
 	
 	public void setAccount(Player player) {
 		this.player = player;
+	}
+	
+	public Stats getStats() {
+		return stats;
+	}
+	
+	public void setStats(Stats stats) {
+		this.stats = stats;
 	}
 	
 	public Player getPlayerToBuff() {
@@ -57,6 +71,9 @@ public class PlayerFormBean implements Serializable {
 	}
 	
 	public String addPlayer() {
+		sm.addStats(stats);
+		player.setStats(stats);
+		
 		pm.addPlayer(player);
 		
 		return "showPlayers";

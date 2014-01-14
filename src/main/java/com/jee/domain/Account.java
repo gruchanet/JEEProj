@@ -75,7 +75,7 @@ public class Account {
 	
 	// lazy loading //
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY,
-			mappedBy="account", targetEntity=Player.class) // mappedBy="Account"
+			mappedBy="account", targetEntity=Player.class)
 	public List<Player> getPlayers() {
 		return players;
 	}

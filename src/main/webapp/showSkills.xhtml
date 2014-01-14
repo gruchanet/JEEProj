@@ -3,28 +3,35 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
 	template="/templates/default.xhtml">
 
 	<ui:define name="content">
 		<h:form styleClass="tableDump">
-			<h:dataTable headerClass="tableHeader" value="#{skillBean.allSkills}" var="item">
+			<rich:extendedDataTable headerClass="tableHeader"
+			value="#{skillBean.allSkills}" sortPriority="#{sortingBean.sortPriorities}" var="item" rows="10">
 				<f:facet name="header">#{msg.skillAllLabel}</f:facet>
-				<h:column>
+				<rich:column sortBy="#{item.name}" sortOrder="#{sortingBean.sortsOrders['name']}">
 					<f:facet name="header">#{msg.skillNameLabel}</f:facet>
 					<h:outputText value="#{item.name}" />
-				</h:column>
+				</rich:column>
 				
-				<h:column>
+				<rich:column sortBy="#{item.type.desc}" sortOrder="#{sortingBean.sortsOrders['skillType']}">
 					<f:facet name="header">#{msg.skillTypeLabel}</f:facet>
 					<h:outputText value="#{item.type.desc}" />
-				</h:column>
+				</rich:column>
 
-				<h:column>
+				<rich:column width="80px">
 					<f:facet name="header">#{msg.action}</f:facet>
 					<h:commandButton value="#{msg.actionDelete}" action="#{skillBean.deleteSkill}" />
-				</h:column>
+				</rich:column>
 
-			</h:dataTable>
+			</rich:extendedDataTable>
+			<fieldset style="background-color: #D4CFC7; border-bottom: 1px solid #C4C0C9;">
+				<a4j:commandButton execute="@this" value="Reset Sorting"
+                               action="#{sortingBean.reset}" render="table"/>
+            </fieldset>
 		</h:form>
 
 	</ui:define>

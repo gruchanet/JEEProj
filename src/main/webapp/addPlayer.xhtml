@@ -25,11 +25,26 @@
 				maxValue="999999" step="1" showTooltip="true" required="#{true}" requiredMessage="Select gold from 0 - 999999 range" converterMessage="">
 				</rich:inputNumberSlider>
 				
+				<h:outputText /><h:outputText />
+				
+				<h:outputText value="#{msg.statsStrengthLabel}" />
+				<rich:inputNumberSlider id="strength" value="#{playerBean.stats.strength}" minValue="10" 
+				maxValue="999" step="1" showTooltip="true" required="#{true}" requiredMessage="Select strength from 10 - 999 range" converterMessage="">
+				</rich:inputNumberSlider>
+				
+				<h:outputText value="#{msg.statsAgilityLabel}" />
+				<rich:inputNumberSlider id="agility" value="#{playerBean.stats.agility}" minValue="10" 
+				maxValue="999" step="1" showTooltip="true" required="#{true}" requiredMessage="Select agility from 10 - 999 range" converterMessage="">
+				</rich:inputNumberSlider>
+				
+				<h:outputText value="#{msg.statsIntelligenceLabel}" />
+				<rich:inputNumberSlider id="intelligence" value="#{playerBean.stats.intelligence}" minValue="10" 
+				maxValue="999" step="1" showTooltip="true" required="#{true}" requiredMessage="Select intelligence from 10 - 999 range" converterMessage="">
+				</rich:inputNumberSlider>
+				
 			</h:panelGrid>
 
-			<h:commandButton value="#{msg.formOKButton}" action="#{playerBean.addPlayer}">
-				<f:actionListener binding="" />
-			</h:commandButton>
+			<h:commandButton value="#{msg.formOKButton}" action="#{playerBean.addPlayer}" />
 
 			<h:panelGrid>
 				<h:messages for="" />

@@ -25,7 +25,9 @@ public class PlayerManager {
 	public void deletePlayer(Player player) {
 		player = em.find(Player.class, player.getId());
 		
-		player.getAccount().deletePlayer(player);
+		if (player.getAccount() != null)
+			player.getAccount().deletePlayer(player);
+		
 		em.remove(player);
 	}
 

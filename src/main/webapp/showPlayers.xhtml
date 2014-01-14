@@ -3,40 +3,62 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
 	template="/templates/default.xhtml">
 
 	<ui:define name="content">
 		<h:form styleClass="tableDump">
-			<h:dataTable headerClass="tableHeader" value="#{playerBean.allPlayers}" var="item">
+			<rich:extendedDataTable headerClass="tableHeader"
+			value="#{playerBean.allPlayers}" sortPriority="#{sortingBean.sortPriorities}" var="item" rows="10">
 				<f:facet name="header">#{msg.playerAllLabel}</f:facet>
-				<h:column>
+				<rich:column sortBy="#{item.name}" sortOrder="#{sortingBean.sortsOrders['name']}">
 					<f:facet name="header">#{msg.playerNameLabel}</f:facet>
 					<h:outputText value="#{item.name}" />
-				</h:column>
+				</rich:column>
 				
-				<h:column>
+				<rich:column sortBy="#{item.account.login}" sortOrder="#{sortingBean.sortsOrders['account']}">
 					<f:facet name="header">#{msg.playerAccountLabel}</f:facet>
 					<h:outputText value="#{item.account.login}" />
-				</h:column>
+				</rich:column>
 
-				<h:column>
+				<rich:column sortBy="#{item.level}" sortOrder="#{sortingBean.sortsOrders['level']}">
 					<f:facet name="header">#{msg.playerLevelLabel}</f:facet>
 					<h:outputText value="#{item.level}" />
-				</h:column>
+				</rich:column>
 				
-				<h:column>
+				<rich:column sortBy="#{item.gold}" sortOrder="#{sortingBean.sortsOrders['gold']}">
 					<f:facet name="header">#{msg.playerGoldLabel}</f:facet>
 					<h:outputText value="#{item.gold}" />
-				</h:column>
+				</rich:column>
+				
+				<rich:column sortBy="#{item.stats.strength}" sortOrder="#{sortingBean.sortsOrders['strength']}">
+					<f:facet name="header">#{msg.statsStrengthLabel}</f:facet>
+					<h:outputText value="#{item.stats.strength}" />
+				</rich:column>
+								
+				<rich:column sortBy="#{item.stats.agility}" sortOrder="#{sortingBean.sortsOrders['agility']}">
+					<f:facet name="header">#{msg.statsAgilityLabel}</f:facet>
+					<h:outputText value="#{item.stats.agility}" />
+				</rich:column>
+				
+				<rich:column sortBy="#{item.stats.intelligence}" sortOrder="#{sortingBean.sortsOrders['intelligence']}">
+					<f:facet name="header">#{msg.statsIntelligenceLabel}</f:facet>
+					<h:outputText value="#{item.stats.intelligence}" />
+				</rich:column>
 
-				<h:column>
+				<rich:column width="180px">
 					<f:facet name="header">#{msg.action}</f:facet>
 					<h:commandButton value="#{msg.actionDelete}" action="#{playerBean.deletePlayer}" />
 					<h:commandButton value="#{msg.playerSkillsLabel}" action="#{playerBean.showSkills}" />
 					<h:commandButton value="#{msg.playerBuffLabel}" action="#{playerBean.buffPlayer}" />
-				</h:column>
+				</rich:column>
 
-			</h:dataTable>
+			</rich:extendedDataTable>
+			<fieldset style="background-color: #D4CFC7; border-bottom: 1px solid #C4C0C9;">
+				<a4j:commandButton execute="@this" value="Reset Sorting"
+                               action="#{sortingBean.reset}" render="table"/>
+            </fieldset>
 		</h:form>
 
 	</ui:define>
