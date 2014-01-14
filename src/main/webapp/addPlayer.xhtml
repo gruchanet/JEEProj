@@ -27,8 +27,9 @@
 				
 			</h:panelGrid>
 
-			<h:commandButton value="#{msg.formOKButton}"
-				action="#{playerBean.addPlayer}" />
+			<h:commandButton value="#{msg.formOKButton}" action="#{playerBean.addPlayer}">
+				<f:actionListener binding="" />
+			</h:commandButton>
 
 			<h:panelGrid>
 				<h:messages for="" />
