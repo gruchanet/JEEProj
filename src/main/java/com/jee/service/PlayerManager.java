@@ -64,6 +64,24 @@ public class PlayerManager {
 		return skills;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Skill> getRestSkills(Player player) {
+		player = em.find(Player.class, player.getId());
+		
+		List<Skill> restSkills = em.createNamedQuery("skill.all").getResultList();
+		List<Skill> playerSkills = new ArrayList<Skill>(player.getSkills());
+		
+		// remove from restSkills
+		for (Skill skill : playerSkills)
+			restSkills.remove(skill);
+		
+		return restSkills;
+//		Query query = em.createNamedQuery("player.restSkills");
+//		query.setParameter("IDPlayer", player.getId());
+//		
+//		return query.getResultList();
+	}
+	
 	/*
 	public void pinAccount(Long idPlayer, Long idAccount) {
 		if (idPlayer != null && idAccount != null) {

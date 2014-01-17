@@ -27,6 +27,7 @@ public class PlayerFormBean implements Serializable {
 	
 	private Player playerToShow = new Player();
 	private ListDataModel<Skill> playerSkills = new ListDataModel<Skill>();
+	private ListDataModel<Skill> restSkills = new ListDataModel<Skill>();
 	
 	private Player playerToBuff = new Player();
 	
@@ -73,6 +74,12 @@ public class PlayerFormBean implements Serializable {
 		playerSkills.setWrappedData(pm.getSkills(playerToShow));
 		
 		return playerSkills;
+	}
+	
+	public ListDataModel<Skill> getRestSkills() {
+		restSkills.setWrappedData(pm.getRestSkills(playerToBuff));
+		
+		return restSkills;
 	}
 	
 	public String addPlayer() {

@@ -20,7 +20,7 @@
 			<h:panelGrid columns="2">
 				<h:outputText value=" #{msg.skillLabel}" />
 				<h:selectOneMenu value="#{buffPlayerBean.idSkill}">
-					<f:selectItems value="#{buffPlayerBean.allSkills}" var="skill"
+					<f:selectItems value="#{playerBean.restSkills}" var="skill"
 						itemValue="#{skill.id}" itemLabel="#{skill.name} [#{skill.type}]" />
 				</h:selectOneMenu>
 			</h:panelGrid>
