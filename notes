@@ -1,9 +1,0 @@
-	public Set<Skill> getSkills(Player player) {
-		player = em.find(Player.class, player.getId());
-		
-		return player.getSkills();
-	}
-	
-	showPlayers -> href ACCOUNT!! -> accountPlayers
-	showALL w GRIDZIE?
-	hover password -> SHOW?
