@@ -26,7 +26,7 @@ public class Account {
 	private String login;
 	private String password;
 	private Date creationDate = new Date();
-	int permissions = 0;
+	private int permissions = 0;
 	
 	private List<Player> players = new ArrayList<Player>(0);
 
@@ -90,6 +90,13 @@ public class Account {
 	
 	public void deletePlayer(Player player) {
 		players.remove(player);
+	}
+	
+	public void clearFields() {
+		login = null;
+		password = null;
+		creationDate = new Date();
+		permissions = 0;
 	}
 
 }

@@ -30,6 +30,7 @@ public class PlayerFormBean implements Serializable {
 	
 	private Player playerToBuff = new Player();
 	
+	private Player playerToEdit = new Player();
 	
 	@Inject
 	private PlayerManager pm;
@@ -42,8 +43,12 @@ public class PlayerFormBean implements Serializable {
 		return player;
 	}
 	
-	public void setAccount(Player player) {
+	public void setPlayer(Player player) {
 		this.player = player;
+	}
+	
+	public Player getPlayerToEdit() {
+		return playerToEdit;
 	}
 	
 	public Stats getStats() {
@@ -76,6 +81,18 @@ public class PlayerFormBean implements Serializable {
 		
 		pm.addPlayer(player);
 		
+		stats.clearFields();
+		player.clearFields();
+		
+		return null;
+	}
+	
+	public String editPlayer() {
+		pm.editPlayer(playerToEdit);
+		
+		// optional //
+		playerToEdit = new Player();
+		
 		return "showPlayers";
 	}
 	
@@ -90,6 +107,12 @@ public class PlayerFormBean implements Serializable {
 		pm.unpinAccount(playerToShow);
 		
 		return null;
+	}
+	
+	public String showEdit() {
+		playerToEdit = players.getRowData();
+		
+		return "editPlayer";
 	}
 	
 	public String showSkills() {

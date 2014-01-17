@@ -23,6 +23,8 @@ public class AccountFormBean implements Serializable {
 	private Account accountToShow = new Account();
 	private ListDataModel<Player> accountPlayers = new ListDataModel<Player>();
 	
+	private Account accountToEdit = new Account();
+	
 	@Inject
 	private AccountManager am;
 	
@@ -32,6 +34,10 @@ public class AccountFormBean implements Serializable {
 	
 	public void setAccount(Account account) {
 		this.account = account;
+	}
+	
+	public Account getAccountToEdit() {
+		return accountToEdit;
 	}
 	
 	public ListDataModel<Account> getAllAccounts() {
@@ -48,6 +54,16 @@ public class AccountFormBean implements Serializable {
 	
 	public String addAccount() {
 		am.addAccount(account);
+		account.clearFields();
+		
+		return null;
+	}
+	
+	public String editAccount() {
+		am.editAccount(accountToEdit);
+		
+		// optional //
+		accountToEdit = new Account();
 		
 		return "showAccounts";
 	}
@@ -57,6 +73,12 @@ public class AccountFormBean implements Serializable {
 		am.deleteAccount(accountToDelete);
 		
 		return null;
+	}
+	
+	public String showEdit() {
+		accountToEdit = accounts.getRowData();
+		
+		return "editAccount";
 	}
 	
 	public String showPlayers() {

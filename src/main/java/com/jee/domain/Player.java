@@ -84,7 +84,7 @@ public class Player {
 	}
 	
 	// lazy loading //
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY) // detach
 	@JoinColumn(name = "id_account")
 	public Account getAccount() {
 		return account;
@@ -95,14 +95,22 @@ public class Player {
 	}
 	
 	// lazy loading //
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	@JoinTable(name="player_skill")
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY) // detach
+	@JoinTable(name = "player_skill",
+	joinColumns = {@JoinColumn(name = "id_player", referencedColumnName = "ID")},
+	inverseJoinColumns = {@JoinColumn(name = "id_skill", referencedColumnName = "ID")})
 	public Set<Skill> getSkills() {
 		return skills;
 	}
 
 	public void setSkills(Set<Skill> skills) {
 		this.skills = skills;
+	}
+	
+	public void clearFields() {
+		name = null;
+		level = 1;
+		gold = 0;
 	}
 
 }

@@ -66,5 +66,11 @@ public class Stats {
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
+	
+	public void clearFields() {
+		strength = 10;
+		agility = 10;
+		intelligence = 10;
+	}
 
 }

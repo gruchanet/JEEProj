@@ -1,16 +1,16 @@
 package com.jee.web;
- 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
- 
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
- 
+
 import org.richfaces.component.SortOrder;
  
 @ManagedBean
@@ -22,7 +22,7 @@ public class SortingBean implements Serializable {
     private Map<String, SortOrder> sortsOrders;
     private List<String> sortPriorities;
  
-    private boolean multipleSorting = false;
+    private boolean multipleSorting = true;
  
     private static final String SORT_PROPERTY_PARAMETER = "sortProperty";
  
@@ -45,6 +45,8 @@ public class SortingBean implements Serializable {
             }
             if (currentPropertySortOrder == null || currentPropertySortOrder.equals(SortOrder.descending)) {
                 sortsOrders.put(property, SortOrder.ascending);
+//            } else if (currentPropertySortOrder.equals(SortOrder.ascending)) {
+//            	sortsOrders.put(property, SortOrder.unsorted);
             } else {
                 sortsOrders.put(property, SortOrder.descending);
             }
@@ -54,6 +56,17 @@ public class SortingBean implements Serializable {
     public void modeChanged(ValueChangeEvent event) {
         reset();
     }
+    
+//    private void resetIcon() {
+//        UIExtendedDataTable table = (UIExtendedDataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("form:table");  
+//        
+//        for (UIComponent column : table.getChildren()) {  
+//        	 ((UIColumn)column).setSortOrder(SortOrder.unsorted);  
+////        table.getSortPriority().clear();
+////        
+////        for (UIComponent column : table.getChildren())
+////        	((UIColumn) column).clearInitialState();
+//    }
  
     public void reset() {
         sortPriorities.clear();

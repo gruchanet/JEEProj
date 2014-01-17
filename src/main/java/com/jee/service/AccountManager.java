@@ -20,6 +20,10 @@ public class AccountManager {
 		account.setId(null);
 		em.persist(account);
 	}
+	
+	public void editAccount(Account account) {
+		em.merge(account);
+	}
 
 	public void deleteAccount(Account account) {
 		account = em.find(Account.class, account.getId());
@@ -70,5 +74,5 @@ public class AccountManager {
 		
 		return false;
 	}
-	
+
 }

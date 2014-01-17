@@ -10,7 +10,7 @@
 	<ui:define name="content">
 		<h:form styleClass="tableDump">
 			<rich:extendedDataTable headerClass="tableHeader"
-			value="#{accountBean.allAccounts}" sortPriority="#{sortingBean.sortPriorities}" var="item" rows="10">
+			value="#{accountBean.allAccounts}" sortPriority="#{sortingBean.sortPriorities}" var="item" rows="10" id="table">
 				<f:facet name="header">#{msg.accountAllLabel}</f:facet>
 				<rich:column sortBy="#{item.login}" sortOrder="#{sortingBean.sortsOrders['login']}">
 					<f:facet name="header">#{msg.accountLoginLabel}</f:facet>
@@ -19,10 +19,10 @@
 
 				<rich:column>
 					<f:facet name="header">#{msg.accountPasswordLabel}</f:facet>
-					<h:outputText value="#{item.password}" />
+					<h:outputText id="password" value="#{item.password}" />
 				</rich:column>
 				
-				<rich:column sortBy="#{item.creationDate}" sortOrder="#{sortingBean.sortsOrders['creationDate']}">
+				<rich:column sortBy="#{item.creationDate}" sortOrder="#{sortingBean.sortsOrders['creationDate']}" width="170px">
 					<f:facet name="header">#{msg.accountCreationDateLabel}</f:facet>
 					<h:outputText value="#{item.creationDate}" />
 				</rich:column>
@@ -31,11 +31,20 @@
 					<f:facet name="header">#{msg.accountPermissionsLabel}</f:facet>
 					<h:outputText value="#{item.permissions}" />
 				</rich:column>
+				
+				<rich:column width="30px">
+					<f:facet name="header">#{msg.actionEdit}</f:facet>
+					<h:commandLink value="#{msg.actionEdit}" action="#{accountBean.showEdit}" />
+				</rich:column>
 
-				<rich:column width="130px">
-					<f:facet name="header">#{msg.action}</f:facet>
-					<h:commandButton value="#{msg.actionDelete}" action="#{accountBean.deleteAccount}" />
-					<h:commandButton value="#{msg.accountPlayersLabel}" action="#{accountBean.showPlayers}" />
+				<rich:column width="50px">
+					<f:facet name="header">#{msg.actionDelete}</f:facet>
+					<h:commandLink value="#{msg.actionDelete}" action="#{accountBean.deleteAccount}" />
+				</rich:column>
+				
+				<rich:column width="50px">
+					<f:facet name="header">#{msg.accountPlayersLabel}</f:facet>
+					<h:commandLink value="#{msg.accountPlayersLabel}" action="#{accountBean.showPlayers}" />
 				</rich:column>
 
 			</rich:extendedDataTable>

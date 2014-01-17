@@ -10,9 +10,9 @@
 	<ui:define name="content">
 		<h:form styleClass="tableDump">
 			<rich:extendedDataTable headerClass="tableHeader"
-			value="#{skillBean.allSkills}" sortPriority="#{sortingBean.sortPriorities}" var="item" rows="10">
+			value="#{skillBean.allSkills}" sortPriority="#{sortingBean.sortPriorities}" var="item" rows="10" id="table">
 				<f:facet name="header">#{msg.skillAllLabel}</f:facet>
-				<rich:column sortBy="#{item.name}" sortOrder="#{sortingBean.sortsOrders['name']}">
+				<rich:column sortBy="#{item.name}" sortOrder="#{sortingBean.sortsOrders['name']}" width="125px">
 					<f:facet name="header">#{msg.skillNameLabel}</f:facet>
 					<h:outputText value="#{item.name}" />
 				</rich:column>
@@ -21,10 +21,15 @@
 					<f:facet name="header">#{msg.skillTypeLabel}</f:facet>
 					<h:outputText value="#{item.type.desc}" />
 				</rich:column>
-
-				<rich:column width="80px">
-					<f:facet name="header">#{msg.action}</f:facet>
-					<h:commandButton value="#{msg.actionDelete}" action="#{skillBean.deleteSkill}" />
+				
+				<rich:column width="30px">
+					<f:facet name="header">#{msg.actionEdit}</f:facet>
+					<h:commandLink value="#{msg.actionEdit}" action="#{skillBean.showEdit}" />
+				</rich:column>
+				
+				<rich:column width="50px">
+					<f:facet name="header">#{msg.actionDelete}</f:facet>
+					<h:commandLink value="#{msg.actionDelete}" action="#{skillBean.deleteSkill}" />
 				</rich:column>
 
 			</rich:extendedDataTable>

@@ -19,6 +19,8 @@ public class SkillFormBean implements Serializable {
 	private Skill skill = new Skill();
 	private ListDataModel<Skill> skills = new ListDataModel<Skill>();
 	
+	private Skill skillToEdit = new Skill();
+	
 	@Inject
 	private SkillManager sm;
 	
@@ -30,6 +32,10 @@ public class SkillFormBean implements Serializable {
 		this.skill = skill;
 	}
 	
+	public Skill getSkillToEdit() {
+		return skillToEdit;
+	}
+	
 	public ListDataModel<Skill> getAllSkills() {
 		skills.setWrappedData(sm.getAllSkills());
 		
@@ -39,6 +45,17 @@ public class SkillFormBean implements Serializable {
 	public String addSkill() {
 		sm.addSkill(skill);
 		
+		skill.clearFields();
+		
+		return null;
+	}
+	
+	public String editSkill() {
+		sm.editSkill(skillToEdit);
+		
+		// optional //
+		skillToEdit = new Skill();
+		
 		return "showSkills";
 	}
 	
@@ -47,6 +64,12 @@ public class SkillFormBean implements Serializable {
 		sm.deleteSkill(skillToDelete);
 		
 		return null;
+	}
+	
+	public String showEdit() {
+		skillToEdit = skills.getRowData();
+		
+		return "editSkill";
 	}
 	
 }

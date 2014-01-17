@@ -19,14 +19,18 @@ public class SkillManager {
 		skill.setId(null);
 		em.persist(skill);
 	}
+	
+	public void editSkill(Skill skill) {
+		em.merge(skill);
+	}
 
 	public void deleteSkill(Skill skill) {
 		skill = em.find(Skill.class, skill.getId());
-		em.remove(skill);
 		
-		// delete trash from ManyToMany relation
-		for (Player p : skill.getPlayers())
-			p.getSkills().remove(skill);
+		for (Player player : skill.getPlayers())
+			player.getSkills().remove(skill);
+		
+		em.remove(em.merge(skill));
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -35,7 +39,7 @@ public class SkillManager {
 	}
 	
 	/*
-	public List<Player> getPlayers(Skill skill) {
+	public Set<Player> getPlayers(Skill skill) {
 		skill = em.find(Skill.class, skill.getId());
 		
 		// lazy loading //

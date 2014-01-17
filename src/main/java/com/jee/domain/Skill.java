@@ -52,7 +52,7 @@ public class Skill {
 	}
 	
 	// lazy loading //
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY,
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY,
 			mappedBy="skills", targetEntity=Player.class)
 	public Set<Player> getPlayers() {
 		return players;
@@ -85,6 +85,11 @@ public class Skill {
             return false;
         }
         return true;
+    }
+    
+    public void clearFields() {
+    	name = null;
+    	type = null;
     }
 	
 }

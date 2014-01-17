@@ -27,7 +27,8 @@ public class BuffPlayerManager {
 		Player player = em.find(Player.class, idPlayer);
 		Skill skill = em.find(Skill.class, idSkill);
 		
-		player.getSkills().add(skill); // skill.getPlayers().add(player) ??
+		player.getSkills().add(skill);
+		skill.getPlayers().add(player);
 	}
 
 }

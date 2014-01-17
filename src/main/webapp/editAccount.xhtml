@@ -12,36 +12,36 @@
 			<h:panelGrid columns="2">
 
 				<h:outputText value="#{msg.accountLoginLabel}" />
-				<h:inputText id="login" value="#{accountBean.account.login}"
+				<h:inputText id="login" value="#{accountBean.accountToEdit.login}"
 					required="#{true}" />
 					
 				<h:outputText value="#{msg.accountPasswordLabel}" />
 				<h:panelGroup layout="block" id="divPassword">
-					<h:inputSecret id="password" value="#{accountBean.account.password}"
-						required="#{true}">
+					<h:inputSecret id="password" value="#{accountBean.accountToEdit.password}"
+						required="#{true}" redisplay="true">
 						<a4j:ajax event="keyup" render="ttPassword"/>
 						<a4j:ajax event="click" render="ttPassword"/>
 					</h:inputSecret>
 					<rich:tooltip id="ttPassword" styleClass="tooltip" layout="block">
-	               		<span style="white-space: nowrap">#{accountBean.account.password}</span>
+	               		<span style="white-space: nowrap">#{accountBean.accountToEdit.password}</span>
 	            	</rich:tooltip>
 				</h:panelGroup>
 
 				<h:outputText value="#{msg.accountCreationDateLabel}" />
-				<rich:calendar value="#{accountBean.account.creationDate}"
+				<rich:calendar value="#{accountBean.accountToEdit.creationDate}"
 					id="calendar" datePattern="dd/MM/yyyy" dataModel="#{pastCalendarModel}"
 					cellWidth="24px" cellHeight="22px" style="width:200px">
 				</rich:calendar>
 				
 				<h:outputText value="#{msg.accountPermissionsLabel}" />
-				<rich:inputNumberSlider id="permissions" value="#{accountBean.account.permissions}" minValue="0" 
+				<rich:inputNumberSlider id="permissions" value="#{accountBean.accountToEdit.permissions}" minValue="0" 
 				maxValue="5" step="1" showTooltip="true" required="#{true}" requiredMessage="Select privileges from 0 - 5 range" converterMessage="">
 				</rich:inputNumberSlider>
 				
 			</h:panelGrid>
 
 			<h:commandButton value="#{msg.formOKButton}"
-				action="#{accountBean.addAccount}" />
+				action="#{accountBean.editAccount}" />
 
 			<h:panelGrid>
 				<h:messages for="" />

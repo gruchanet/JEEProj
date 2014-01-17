@@ -21,6 +21,10 @@ public class PlayerManager {
 		player.setId(null);
 		em.persist(player);
 	}
+	
+	public void editPlayer(Player player) {
+		em.merge(player);
+	}
 
 	public void deletePlayer(Player player) {
 		player = em.find(Player.class, player.getId());
@@ -28,7 +32,7 @@ public class PlayerManager {
 		if (player.getAccount() != null)
 			player.getAccount().deletePlayer(player);
 		
-		em.remove(player);
+		em.remove(em.merge(player));
 	}
 
 	@SuppressWarnings("unchecked")
