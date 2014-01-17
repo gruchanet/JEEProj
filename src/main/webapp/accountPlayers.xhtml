@@ -9,8 +9,8 @@
 
 	<ui:define name="content">
 		<h:form styleClass="tableDump">
-			<rich:extendedDataTable headerClass="tableHeader"
-			value="#{accountBean.accountPlayers}" sortPriority="#{sortingBean.sortPriorities}" var="item" rows="10" id="table">
+			<rich:extendedDataTable id="table" headerClass="tableHeader"
+			value="#{accountBean.accountPlayers}" sortPriority="#{sortingBean.sortPriorities}" var="item" style="height: 250px;">
 				<f:facet name="header">Account players</f:facet>
 				<rich:column sortBy="#{item.name}" sortOrder="#{sortingBean.sortsOrders['name']}">
 					<f:facet name="header">#{msg.playerNameLabel}</f:facet>
