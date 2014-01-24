@@ -114,6 +114,10 @@ public class AccountFormBean implements Serializable {
 		return null;
 	}
 	
+	public boolean isPlayersEmpty() {
+		return am.isPlayersEmpty(accounts.getRowData().getId());
+	}
+	
 	public String showEdit() {
 		accountToEdit = accounts.getRowData();
 		

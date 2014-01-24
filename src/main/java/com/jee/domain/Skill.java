@@ -62,6 +62,7 @@ public class Skill {
 		this.players = players;
 	}
 	
+	/* CONVERTER NEEDS THIS TO WORK */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

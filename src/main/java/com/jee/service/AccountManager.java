@@ -43,6 +43,20 @@ public class AccountManager {
 		return players;
 	}
 	
+	public boolean isPlayersEmpty(Long accountId) {
+//		List<Player> accountPlayers = em.createNamedQuery("account.players").setParameter("accountId", accountId).getResultList();
+		Account account = em.find(Account.class, accountId);
+		
+		List<Player> accountPlayers = new ArrayList<Player>(account.getPlayers());
+		
+		System.out.println("accountPlayers *size*: " + accountPlayers.size());
+		
+		if (accountPlayers.isEmpty())
+			return true;
+		
+		return false;
+	}
+	
 	/*
 	public void addPlayer(Account account, Player player) {
 		account = em.find(Account.class, account.getId());

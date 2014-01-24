@@ -36,13 +36,20 @@ public class PlayerPinnerManager {
 	public void updateAccountPlayers(Account account, List<Player> players) {
 		account = em.find(Account.class, account.getId());
 		
+		for (Player player : account.getPlayers()) {
+			if (!players.contains(player))
+				player.setAccount(null);
+		}
+		
 		account.getPlayers().clear();
 		
 		for (Player player : players) {
 			player = em.find(Player.class, player.getId());
 			
 			account.getPlayers().add(player);
-			player.setAccount(account);
+			
+			if (account.getPlayers().contains(player))
+				player.setAccount(account);
 		}
 	}
 	

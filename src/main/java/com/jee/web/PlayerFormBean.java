@@ -148,6 +148,10 @@ public class PlayerFormBean implements Serializable {
 		return null;
 	}
 	
+	public boolean isSkillsEmpty() {
+		return pm.isSkillsEmpty(players.getRowData().getId());
+	}
+	
 	public String showEdit() {
 		playerToEdit = players.getRowData();
 		

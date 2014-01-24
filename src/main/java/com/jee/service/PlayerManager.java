@@ -63,6 +63,16 @@ public class PlayerManager {
 		return skills;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public boolean isSkillsEmpty(Long playerId) {
+		List<Skill> playerSkills = em.createNamedQuery("player.skills").setParameter("playerId", playerId).getResultList();
+		
+		if (playerSkills.isEmpty())
+			return true;
+		
+		return false;
+	}
+	
 //	@SuppressWarnings("unchecked")
 //	public List<Skill> getRestSkills(Player player) {
 //		player = em.find(Player.class, player.getId());
@@ -102,7 +112,8 @@ public class PlayerManager {
 		player = em.find(Player.class, player.getId());
 		skill = em.find(Skill.class, skill.getId());
 		
-		player.getSkills().remove(skill); // skill.getPlayers().remove(player) ??
+		player.getSkills().remove(skill); 
+		skill.getPlayers().remove(player); // needed?
 	}
 	
 	public Player getPlayer(Long id) {

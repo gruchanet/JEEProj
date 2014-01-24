@@ -18,6 +18,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
+//	@NamedQuery(name = "account.players", query = "SELECT acc.players FROM Account acc WHERE acc.id = :accountId"),
 	@NamedQuery(name = "account.all", query = "SELECT acc FROM Account acc")
 })
 public class Account {

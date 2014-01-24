@@ -59,7 +59,7 @@
 				
 				<rich:column width="40px">
 					<f:facet name="header">#{msg.playerSkillsLabel}</f:facet>
-					<h:commandLink value="#{msg.playerSkillsLabel}" action="#{playerBean.showSkills}" />
+					<h:commandLink value="#{msg.playerSkillsLabel}" action="#{playerBean.showSkills}" rendered="#{not playerBean.skillsEmpty}"/>
 				</rich:column>
 				
 				<rich:column width="35px">

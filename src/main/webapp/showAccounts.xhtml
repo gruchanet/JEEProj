@@ -44,7 +44,7 @@
 				
 				<rich:column width="50px">
 					<f:facet name="header">#{msg.accountPlayersLabel}</f:facet>
-					<h:commandLink value="#{msg.accountPlayersLabel}" action="#{accountBean.showPlayers}" />
+					<h:commandLink value="#{msg.accountPlayersLabel}" action="#{accountBean.showPlayers}" rendered="#{not accountBean.playersEmpty}"/>
 				</rich:column>
 				
 				<rich:column width="30px">

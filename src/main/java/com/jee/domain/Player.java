@@ -19,22 +19,9 @@ import javax.persistence.OneToOne;
 
 @Entity
 @NamedQueries({
-	/*@NamedQuery(name = "player.skillsToGet", query = "SELECT DISTINCT s FROM Skill s "
-			+ "OUTER JOIN Player_Skill ps ON ps.skills_id = s.id"
-			+ "INNER JOIN Player p ON ps.players.id = p.id"
-			+ "WHERE p.id = null"),*/
-//	@NamedQuery(name = "player.restSkills", query = "SELECT s FROM Skill s WHERE s.id NOT IN (SELECT p.skills FROM Player p)"),
-	// select p from Person p left join p.languages l with l.id in :values where l is null
-	// select p from Person p where not exists 
-    // 	 (select l from Language l where l in elements(p.languages) and l.id in :values)
-	// select a from A a where :k not member of a.bs
-//	@NamedQuery(name = "player.restSkills", query = "SELECT s FROM Skill s LEFT JOIN s.players p WHERE p IS NULL"),
-//	@NamedQuery(name = "player.restSkills", query = "SELECT s FROM Skill s WHERE NOT EXISTS"
-//			+ "(SELECT p FROM Player WHERE p IN (s.players)"),
-//	@NamedQuery(name = "player.restSkills", query = "SELECT s FROM Skill JOIN s.players p WHERE p NOT IN(s.players)"),
-//	@NamedQuery(name = "player.restSkills", query = "SELECT s FROM Skill s WHERE :IDPlayer NOT MEMBER OF s.players"),
 	@NamedQuery(name = "player.unsetInclude", query = "SELECT p FROM Player p WHERE p.account = null OR p.account.id = :accountId"),
 	@NamedQuery(name = "player.unset", query = "SELECT p FROM Player p WHERE p.account = null"),
+	@NamedQuery(name = "player.skills", query = "SELECT p.skills FROM Player p WHERE p.id = :playerId"),
 	@NamedQuery(name = "player.all", query = "SELECT p FROM Player p")
 })
 public class Player {
@@ -117,6 +104,32 @@ public class Player {
 	public void setSkills(Set<Skill> skills) {
 		this.skills = skills;
 	}
+	
+	/* CONVERTER NEEDS THIS TO WORK */
+	@Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Player other = (Player) obj;
+        if (id != other.id) {
+            return false;
+        }
+        if (name == null) {
+            if (other.name!= null) {
+                return false;
+            }
+        } else if (!name.equals(other.name)) {
+            return false;
+        }
+        return true;
+    }
 	
 	public void clearFields() {
 		name = null;
