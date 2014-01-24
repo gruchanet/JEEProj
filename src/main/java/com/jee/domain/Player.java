@@ -33,6 +33,7 @@ import javax.persistence.OneToOne;
 //			+ "(SELECT p FROM Player WHERE p IN (s.players)"),
 //	@NamedQuery(name = "player.restSkills", query = "SELECT s FROM Skill JOIN s.players p WHERE p NOT IN(s.players)"),
 //	@NamedQuery(name = "player.restSkills", query = "SELECT s FROM Skill s WHERE :IDPlayer NOT MEMBER OF s.players"),
+	@NamedQuery(name = "player.unsetInclude", query = "SELECT p FROM Player p WHERE p.account = null OR p.account.id = :accountId"),
 	@NamedQuery(name = "player.unset", query = "SELECT p FROM Player p WHERE p.account = null"),
 	@NamedQuery(name = "player.all", query = "SELECT p FROM Player p")
 })

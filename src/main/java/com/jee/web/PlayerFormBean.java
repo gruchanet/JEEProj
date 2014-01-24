@@ -12,7 +12,9 @@ import javax.inject.Named;
 import com.jee.domain.Player;
 import com.jee.domain.Skill;
 import com.jee.domain.Stats;
+import com.jee.service.BuffPlayerManager;
 import com.jee.service.PlayerManager;
+import com.jee.service.SkillManager;
 import com.jee.service.StatsManager;
 
 @SessionScoped
@@ -27,17 +29,27 @@ public class PlayerFormBean implements Serializable {
 	
 	private Player playerToShow = new Player();
 	private ListDataModel<Skill> playerSkills = new ListDataModel<Skill>();
-	private ListDataModel<Skill> restSkills = new ListDataModel<Skill>();
 	
 	private Player playerToBuff = new Player();
 	
 	private Player playerToEdit = new Player();
+	
+	/* */
+	private List<Skill> availableSkills = new ArrayList<Skill>();
+	private List<Skill> pickedSkills = new ArrayList<Skill>();
+	/* */
 	
 	@Inject
 	private PlayerManager pm;
 	
 	@Inject
 	private StatsManager sm;
+	
+	@Inject
+	private SkillManager skm;
+	
+	@Inject
+	private BuffPlayerManager bpm;
 	
 	
 	public Player getPlayer() {
@@ -76,10 +88,30 @@ public class PlayerFormBean implements Serializable {
 		return playerSkills;
 	}
 	
-	public ListDataModel<Skill> getRestSkills() {
-		restSkills.setWrappedData(pm.getRestSkills(playerToBuff));
+	public List<Skill> getPickedSkills() {
+		pickedSkills = pm.getSkills(playerToBuff);
 		
-		return restSkills;
+		return pickedSkills;
+	}
+	
+	public void setPickedSkills(List<Skill> skills) {
+		this.pickedSkills = skills;
+	}
+	
+	public List<Skill> getAvailableSkills() {
+		availableSkills = skm.getAllSkills();
+		
+		return availableSkills;
+	}
+	
+	public void setAvailableSkills(List<Skill> skills) {
+		this.availableSkills = skills;
+	}
+	
+	public String updateSkills() {
+		bpm.updatePlayerSkills(playerToBuff, pickedSkills);
+		
+		return null;
 	}
 	
 	public String addPlayer() {

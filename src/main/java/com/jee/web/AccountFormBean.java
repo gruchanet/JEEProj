@@ -1,6 +1,8 @@
 package com.jee.web;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.ListDataModel;
@@ -10,6 +12,7 @@ import javax.inject.Named;
 import com.jee.domain.Account;
 import com.jee.domain.Player;
 import com.jee.service.AccountManager;
+import com.jee.service.PlayerPinnerManager;
 
 @SessionScoped
 @Named("accountBean")
@@ -25,8 +28,18 @@ public class AccountFormBean implements Serializable {
 	
 	private Account accountToEdit = new Account();
 	
+	private Account accountToPin = new Account();
+	
+	/* */
+	private List<Player> availablePlayers = new ArrayList<Player>();
+	private List<Player> pickedPlayers = new ArrayList<Player>();
+	/* */
+	
 	@Inject
 	private AccountManager am;
+	
+	@Inject
+	private PlayerPinnerManager ppm;
 	
 	public Account getAccount() {
 		return account;
@@ -50,6 +63,32 @@ public class AccountFormBean implements Serializable {
 		accountPlayers.setWrappedData(am.getPlayers(accountToShow));
 		
 		return accountPlayers;
+	}
+	
+	public List<Player> getPickedPlayers() {
+		pickedPlayers = am.getPlayers(accountToPin);
+		
+		return pickedPlayers;
+	}
+	
+	public void setPickedPlayers(List<Player> players) {
+		this.pickedPlayers = players;
+	}
+	
+	public List<Player> getAvailablePlayers() {
+		availablePlayers = ppm.getIncludeUnsetPlayers(accountToPin.getId());
+		
+		return availablePlayers;
+	}
+	
+	public void setAvailablePlayers(List<Player> players) {
+		this.availablePlayers = players;
+	}
+	
+	public String updatePlayers() {
+		ppm.updateAccountPlayers(accountToPin, pickedPlayers);
+		
+		return null;
 	}
 	
 	public String addAccount() {
@@ -85,6 +124,12 @@ public class AccountFormBean implements Serializable {
 		accountToShow = accounts.getRowData();
 		
 		return "accountPlayers";
+	}
+	
+	public String pinPlayers() {
+		accountToPin = accounts.getRowData();
+		
+		return "pinPlayers";
 	}
 	
 	public String disposePlayer() {

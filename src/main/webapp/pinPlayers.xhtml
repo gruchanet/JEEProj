@@ -11,23 +11,27 @@
 		<h:form styleClass="tableDump">
 	        <rich:panel style="width:560px;">
             <f:facet name="header">
-                <h:outputText value="Pick skills for the player"></h:outputText>
+                <h:outputText value="Pin players to account"></h:outputText>
             </f:facet>
-	            <rich:pickList value="#{playerBean.pickedSkills}"
-	            sourceCaption="Available skills" targetCaption="Selected skills" var="item" listHeight="200px">
-	                <f:selectItems value="#{playerBean.availableSkills}" />
-	                <f:converter converterId="SkillConverter" />
+	            <rich:pickList value="#{accountBean.pickedPlayers}"
+	            sourceCaption="Available players" targetCaption="Pinned players" var="item" listHeight="200px">
+	                <f:selectItems value="#{accountBean.availablePlayers}" />
+	                <f:converter converterId="PlayerConverter" />
 	                <rich:column>
 	                    <f:facet name="header">Name</f:facet>
 	                    #{item.name}
 	                </rich:column>
 	                <rich:column>
-	                    <f:facet name="header">Type</f:facet>
-	                    #{item.type.desc}
+	                    <f:facet name="header">Level</f:facet>
+	                    #{item.level}
+	                </rich:column>
+      	            <rich:column>
+	                    <f:facet name="header">Gold</f:facet>
+	                    #{item.gold}
 	                </rich:column>
 	            </rich:pickList>
 	            <h:commandButton value="#{msg.formSaveButton}"
-	            action="#{playerBean.updateSkills}" />
+	            action="#{accountBean.updatePlayers}" />
         	</rich:panel>
 		</h:form>
 

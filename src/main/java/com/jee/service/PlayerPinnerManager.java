@@ -19,13 +19,31 @@ public class PlayerPinnerManager {
 	public List<Player> getUnsetPlayers() {
 		return em.createNamedQuery("player.unset").getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Player> getIncludeUnsetPlayers(Long accountId) {
+		return em.createNamedQuery("player.unsetInclude").setParameter("accountId", accountId).getResultList();
+	}
 
-	public void pinPlayer(Long idAccount, Long idPlayer) {
-		Account account = em.find(Account.class, idAccount);
-		Player player = em.find(Player.class, idPlayer);
+//	public void pinPlayer(Long idAccount, Long idPlayer) {
+//		Account account = em.find(Account.class, idAccount);
+//		Player player = em.find(Player.class, idPlayer);
+//		
+//		account.getPlayers().add(player);
+//		player.setAccount(account);
+//	}
+	
+	public void updateAccountPlayers(Account account, List<Player> players) {
+		account = em.find(Account.class, account.getId());
 		
-		account.getPlayers().add(player);
-		player.setAccount(account);
+		account.getPlayers().clear();
+		
+		for (Player player : players) {
+			player = em.find(Player.class, player.getId());
+			
+			account.getPlayers().add(player);
+			player.setAccount(account);
+		}
 	}
 	
 	/*

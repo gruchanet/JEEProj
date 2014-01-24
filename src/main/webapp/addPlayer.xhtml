@@ -13,7 +13,7 @@
 
 				<h:outputText value="#{msg.playerNameLabel}" />
 				<h:inputText id="name" value="#{playerBean.player.name}"
-					required="#{true}" />
+					required="#{true}" requiredMessage="Name field must be filled" />
 				
 				<h:outputText value="#{msg.playerLevelLabel}" />
 				<rich:inputNumberSlider id="level" value="#{playerBean.player.level}" minValue="1" 
@@ -28,19 +28,19 @@
 				<h:outputText /><h:outputText />
 				
 				<h:outputText value="#{msg.statsStrengthLabel}" />
-				<rich:inputNumberSlider id="strength" value="#{playerBean.stats.strength}" minValue="10" 
+				<rich:inputNumberSpinner id="strength" value="#{playerBean.stats.strength}" minValue="10" 
 				maxValue="999" step="1" showTooltip="true" required="#{true}" requiredMessage="Select strength from 10 - 999 range" converterMessage="">
-				</rich:inputNumberSlider>
+				</rich:inputNumberSpinner>
 				
 				<h:outputText value="#{msg.statsAgilityLabel}" />
-				<rich:inputNumberSlider id="agility" value="#{playerBean.stats.agility}" minValue="10" 
+				<rich:inputNumberSpinner id="agility" value="#{playerBean.stats.agility}" minValue="10" 
 				maxValue="999" step="1" showTooltip="true" required="#{true}" requiredMessage="Select agility from 10 - 999 range" converterMessage="">
-				</rich:inputNumberSlider>
+				</rich:inputNumberSpinner>
 				
 				<h:outputText value="#{msg.statsIntelligenceLabel}" />
-				<rich:inputNumberSlider id="intelligence" value="#{playerBean.stats.intelligence}" minValue="10" 
+				<rich:inputNumberSpinner id="intelligence" value="#{playerBean.stats.intelligence}" minValue="10" 
 				maxValue="999" step="1" showTooltip="true" required="#{true}" requiredMessage="Select intelligence from 10 - 999 range" converterMessage="">
-				</rich:inputNumberSlider>
+				</rich:inputNumberSpinner>
 				
 			</h:panelGrid>
 

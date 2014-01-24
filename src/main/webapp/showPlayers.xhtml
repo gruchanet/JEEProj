@@ -10,7 +10,7 @@
 	<ui:define name="content">
 		<h:form styleClass="tableDump">
 			<rich:extendedDataTable id="table" headerClass="tableHeader"
-			value="#{playerBean.allPlayers}" sortPriority="#{sortingBean.sortPriorities}" var="item" style="height: 250px;">
+			value="#{playerBean.allPlayers}" sortPriority="#{sortingBean.sortPriorities}" var="item" style="height: 256px;">
 				<f:facet name="header">#{msg.playerAllLabel}</f:facet>
 				<rich:column sortBy="#{item.name}" sortOrder="#{sortingBean.sortsOrders['name']}">
 					<f:facet name="header">#{msg.playerNameLabel}</f:facet>
@@ -54,7 +54,7 @@
 				
 				<rich:column width="50px">
 					<f:facet name="header">#{msg.actionDelete}</f:facet>
-					<h:commandLink value="#{msg.actionDelete}" action="#{playerBean.deletePlayer}" />
+					<h:commandLink onclick="return confirm('Do you really want to delete this player?')" value="#{msg.actionDelete}" action="#{playerBean.deletePlayer}" />
 				</rich:column>
 				
 				<rich:column width="40px">

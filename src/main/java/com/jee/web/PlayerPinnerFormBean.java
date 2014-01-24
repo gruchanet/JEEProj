@@ -51,11 +51,11 @@ public class PlayerPinnerFormBean implements Serializable {
 		return am.getAllAccounts();
 	}
 
-	public String pinPlayer() {
-		if (idAccount != null && idPlayer != null)
-			ppm.pinPlayer(idAccount, idPlayer);
-		
-		return null;
-	}
+//	public String pinPlayer() {
+//		if (idAccount != null && idPlayer != null)
+//			ppm.pinPlayer(idAccount, idPlayer);
+//		
+//		return null;
+//	}
 	
 }

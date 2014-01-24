@@ -10,7 +10,7 @@
 	<ui:define name="content">
 		<h:form styleClass="tableDump">
 			<rich:extendedDataTable id="table" headerClass="tableHeader"
-			value="#{skillBean.allSkills}" sortPriority="#{sortingBean.sortPriorities}" var="item" style="height: 250px;">
+			value="#{skillBean.allSkills}" sortPriority="#{sortingBean.sortPriorities}" var="item" style="height: 256px;">
 				<f:facet name="header">#{msg.skillAllLabel}</f:facet>
 				<rich:column sortBy="#{item.name}" sortOrder="#{sortingBean.sortsOrders['name']}" width="125px">
 					<f:facet name="header">#{msg.skillNameLabel}</f:facet>
@@ -29,7 +29,7 @@
 				
 				<rich:column width="50px">
 					<f:facet name="header">#{msg.actionDelete}</f:facet>
-					<h:commandLink value="#{msg.actionDelete}" action="#{skillBean.deleteSkill}" />
+					<h:commandLink onclick="return confirm('Do you really want to delete this skill?')" value="#{msg.actionDelete}" action="#{skillBean.deleteSkill}" />
 				</rich:column>
 
 			</rich:extendedDataTable>

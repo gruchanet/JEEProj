@@ -49,4 +49,10 @@ public class SkillManager {
 	*/
 	
 	/* deleteSkillFromPlayer */
+	
+	public Skill getSkill(Long id) {
+		Skill skill = em.find(Skill.class, id);
+		
+		return skill;
+	}
 }

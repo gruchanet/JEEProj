@@ -13,10 +13,10 @@
 
 				<h:outputText value="#{msg.skillNameLabel}" />
 				<h:inputText id="name" value="#{skillBean.skill.name}"
-					required="#{true}" />
+					required="#{true}" requiredMessage="Name field must be filled" />
 					
 				<h:outputText value="#{msg.skillTypeLabel}" />
-				<h:selectOneMenu value="#{skillBean.skill.type}">
+				<h:selectOneMenu value="#{skillBean.skill.type}" required="#{true}" requiredMessage="Type must be chosen">
 					<f:selectItems value="#{skillTypeBean.skillTypeValues}" />
 				</h:selectOneMenu>
 				

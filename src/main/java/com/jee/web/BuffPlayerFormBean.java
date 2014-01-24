@@ -48,11 +48,11 @@ public class BuffPlayerFormBean implements Serializable {
 		return sm.getAllSkills();
 	}
 	
-	public String buffPlayer() {
-		if (idPlayer != null && idSkill != null)
-			bpm.buffPlayer(idPlayer, idSkill);
-		
-		return null;
-	}
+//	public String buffPlayer() {
+//		if (idPlayer != null && idSkill != null)
+//			bpm.buffPlayer(idPlayer, idSkill);
+//		
+//		return null;
+//	}
 	
 }
