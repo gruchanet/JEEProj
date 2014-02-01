@@ -31,18 +31,31 @@ body {
 	background: rgba(160, 255, 247, 0.8);
 	border-radius: 20px;
 	width: 200px;
-	position: fixed;
+	/* position: fixed; */
+	position: relative;
+	float: left;
 }
 
 .content {
-	margin-bottom: 50px;
+	/* margin-bottom: 50px; */
 	padding: 20px;
 	background: rgba(245, 140, 140, 0.8);
 	border-radius: 20px;
-	position: fixed;
-	top: 90px;
-	left: 230px;
+	/* position: fixed; */
+	position: relative;
+	float: right;
+	margin-top: 10px;
+	/* left: 10px; 230px */
 	width: 80%;
+}
+
+.loginBox {
+	padding: 10px;
+	background: rgba(0, 255, 100, 0.8);
+	border-radius: 20px;
+	position: relative;
+	clear: left;
+	width: 200px;
 }
 
 .menuItem {
@@ -60,6 +73,14 @@ body {
 	font-size: 12pt !important;
 	font-family: "BentonSans Regular", "Myriad Pro", Myriad, "Trebuchet MS",
 		Trebuchet, Arial, Verdana, sans-serif !important;
+}
+
+.infoMsg {
+	color: blue;
+}
+
+.errorMsg {
+	color: red;
 }
 
 .bdc {

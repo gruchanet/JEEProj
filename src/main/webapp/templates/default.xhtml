@@ -9,21 +9,26 @@
 	</title>
 </h:head>
 <h:body>
-  <h:outputStylesheet library="css" name="default.css" target="body" />
+	<h:outputStylesheet library="css" name="default.css" target="body" />
 	<div class="heading">
-	  <ui:insert name="heading">
+		<ui:insert name="heading">
        #{msg.mainHeading}
      </ui:insert>
-    </div>
+	</div>
 	<div class="appBox">
-	 <div class="menu">
-	   <ui:insert name="menu">
-         <ui:include src="/views/main/menu.xhtml" />
-       </ui:insert>
-      </div>
-	  <div class="content">
-	     <ui:insert name="content" />
-       </div>
+		<div class="menu">
+			<ui:insert name="menu">
+				<ui:include src="/views/main/menu.xhtml" />
+			</ui:insert>
+		</div>
+		<div class="content">
+			<ui:insert name="content" />
+		</div>
+		<div class="loginBox">
+			<ui:insert name="login">
+				<ui:include src="/views/main/loginForm.xhtml" />
+			</ui:insert>
+		</div>
 	</div>
 </h:body>
 </html>

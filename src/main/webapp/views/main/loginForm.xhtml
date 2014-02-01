@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+  <div>
+	<h:form id="loginForm">
+		<h:message for="loginBtn" infoClass="infoMsg" errorClass="errorMsg" />
+	
+		<h:panelGrid columns="2">
+		
+			<h:outputText value="#{msg.accountLoginLabel}" />
+			<h:inputText id="login" value="#{loginBean.login}" size="16"
+					required="#{true}" requiredMessage="Empty login field" />
+					
+			<h:outputText value="#{msg.accountPasswordLabel}" />
+			<h:panelGroup layout="block">
+				<h:inputSecret id="password" value="#{loginBean.password}" size="16"
+					required="#{true}" requiredMessage="Empty password field">
+					<a4j:ajax event="keyup" render="ttPassword"/>
+					<a4j:ajax event="click" render="ttPassword"/>
+				</h:inputSecret>
+				<rich:tooltip id="ttPassword" styleClass="tooltip" layout="block">
+               		<span style="white-space: nowrap">{loginBean.password}</span>
+            	</rich:tooltip>
+			</h:panelGroup>
+			
+		</h:panelGrid>
+		
+		<h:commandButton id="loginBtn" value="#{msg.formLoginButton}"
+			 action="#{loginBean.loginUser}" />
+			
+		<h:panelGrid>
+			<h:message for="login" errorClass="errorMsg" />
+			<h:message for="password" errorClass="errorMsg"/>
+		</h:panelGrid>
+		
+   </h:form>
+  </div>
+</ui:composition>
