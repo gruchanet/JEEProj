@@ -121,19 +121,19 @@ public class AccountFormBean implements Serializable {
 	public String showEdit() {
 		accountToEdit = accounts.getRowData();
 		
-		return "editAccount";
+		return "/manage/editAccount";
 	}
 	
 	public String showPlayers() {
 		accountToShow = accounts.getRowData();
 		
-		return "accountPlayers";
+		return "/manage/accountPlayers";
 	}
 	
 	public String pinPlayers() {
 		accountToPin = accounts.getRowData();
 		
-		return "pinPlayers";
+		return "/manage/pinPlayers";
 	}
 	
 	public String disposePlayer() {

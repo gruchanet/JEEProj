@@ -155,19 +155,19 @@ public class PlayerFormBean implements Serializable {
 	public String showEdit() {
 		playerToEdit = players.getRowData();
 		
-		return "editPlayer";
+		return "/manage/editPlayer";
 	}
 	
 	public String showSkills() {
 		playerToShow = players.getRowData();
 		
-		return "playerSkills";
+		return "/manage/playerSkills";
 	}
 	
 	public String buffPlayer() {
 		playerToBuff = players.getRowData();
 		
-		return "buffPlayer";
+		return "/manage/buffPlayer";
 	}
 	
 	public String disposeSkill() {

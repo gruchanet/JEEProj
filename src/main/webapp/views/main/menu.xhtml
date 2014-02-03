@@ -6,21 +6,30 @@
   <div>
 	<h:form>
 	  <ul>
-		<h:button styleClass="menuItem" outcome="home?faces-redirect=true" value="#{msg.linkHome}" />
+		<h:button styleClass="menuItem" outcome="/home?faces-redirect=true" value="#{msg.linkHome}" />
 	  </ul>
 		<hr />
 	  <ul>
-	  	<h:button styleClass="menuItem" outcome="addAccount?faces-redirect=true" value="#{msg.accountAddLabel}" />
-	  	<h:button styleClass="menuItem" outcome="addPlayer?faces-redirect=true" value="#{msg.playerAddLabel}" />
-	  	<h:button styleClass="menuItem" outcome="addSkill?faces-redirect=true" value="#{msg.skillAddLabel}" />
+	    <h:button styleClass="menuItem" outcome="/registerAccount?faces-redirect=true" value="#{msg.registerLabel}" rendered="#{not loginBean.logged}" />
+    	<h:button styleClass="menuItem" outcome="/user/createPlayer" value="#{msg.createCharacterLabel}" rendered="#{loginBean.logged and loginBean.loggedUser.permissions le 3}" />
+    	<h:button styleClass="menuItem" outcome="/user/players" value="#{msg.playersLabel}" rendered="#{loginBean.logged and not loginBean.playersEmpty}" />
+	  	<h:button styleClass="menuItem" outcome="/manage/addAccount?faces-redirect=true" value="#{msg.accountAddLabel}" rendered="#{loginBean.loggedUser.permissions >= 4}" />
+	  	<h:button styleClass="menuItem" outcome="/manage/addPlayer?faces-redirect=true" value="#{msg.playerAddLabel}" rendered="#{loginBean.loggedUser.permissions >= 4}" />
+	  	<h:button styleClass="menuItem" outcome="/manage/addSkill?faces-redirect=true" value="#{msg.skillAddLabel}" rendered="#{loginBean.loggedUser.permissions >= 4}" />
 		<!-- <br /><br />
 		<h:button styleClass="menuItem" outcome="pinPlayer?faces-redirect=true" value="#{msg.playerPinLabel}" /> -->
 	  </ul>
+	  <f:verbatim rendered="#{loginBean.logged and loginBean.loggedUser.permissions le 3}">
+	  	<hr />
+  	  </f:verbatim>
+	  <ul>
+	  	<h:button styleClass="menuItem" outcome="/user/changePassword" value="#{msg.changePasswordLabel}" rendered="#{loginBean.logged and loginBean.loggedUser.permissions le 3}" />
+	  </ul>
 		<hr />
 	  <ul>
-	  <h:button styleClass="menuItem" outcome="showAccounts?faces-redirect=true" value="#{msg.accountShowAll}" />
-	  <h:button styleClass="menuItem" outcome="showPlayers?faces-redirect=true" value="#{msg.playerShowAll}" />
-	  <h:button styleClass="menuItem" outcome="showSkills?faces-redirect=true" value="#{msg.skillShowAll}" />
+	  	<h:button styleClass="menuItem" outcome="/showAccounts?faces-redirect=true" value="#{msg.accountShowAll}" />
+	  	<h:button styleClass="menuItem" outcome="/showPlayers?faces-redirect=true" value="#{msg.playerShowAll}" />
+	 	<h:button styleClass="menuItem" outcome="/showSkills?faces-redirect=true" value="#{msg.skillShowAll}" />
 	  </ul>
    </h:form>
   </div>

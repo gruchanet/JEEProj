@@ -25,13 +25,13 @@ public class PlayerPinnerManager {
 		return em.createNamedQuery("player.unsetInclude").setParameter("accountId", accountId).getResultList();
 	}
 
-//	public void pinPlayer(Long idAccount, Long idPlayer) {
-//		Account account = em.find(Account.class, idAccount);
-//		Player player = em.find(Player.class, idPlayer);
-//		
-//		account.getPlayers().add(player);
-//		player.setAccount(account);
-//	}
+	public void pinPlayer(Long idAccount, Long idPlayer) {
+		Account account = em.find(Account.class, idAccount);
+		Player player = em.find(Player.class, idPlayer);
+		
+		account.getPlayers().add(player);
+		player.setAccount(account);
+	}
 	
 	public void updateAccountPlayers(Account account, List<Player> players) {
 		account = em.find(Account.class, account.getId());

@@ -24,7 +24,8 @@
 	                            <h:outputText value="#{item.name}" />
 	                            <h:outputText value="#{msg.skillTypeLabel}" style="font-weight:bold" />
 	                            <h:outputText value="#{item.type.desc}" />
-								<h:commandButton onclick="return confirm('Do you really want to remove skill from this player?')" value="#{msg.actionDelete}" action="#{playerBean.disposeSkill}" />
+								<h:commandButton onclick="return confirm('Do you really want to remove skill from this player?')" value="#{msg.actionDelete}" 
+									action="#{playerBean.disposeSkill}" rendered="#{loginBean.loggedUser.permissions >= 4}" />
 	                        </h:panelGrid>
 	                    </rich:panel>
 	                </a4j:repeat>

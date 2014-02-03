@@ -1,5 +1,8 @@
 package com.jee.domain;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +23,7 @@ import javax.persistence.TemporalType;
 @NamedQueries({
 //	@NamedQuery(name = "account.players", query = "SELECT acc.players FROM Account acc WHERE acc.id = :accountId"),
 	@NamedQuery(name = "account.login", query = "SELECT acc FROM Account acc WHERE acc.login = :login AND acc.password = :password"),
+	@NamedQuery(name = "account.getPassword", query = "SELECT acc.password FROM Account acc WHERE acc.id = :accountId"),
 	@NamedQuery(name = "account.all", query = "SELECT acc FROM Account acc")
 })
 public class Account {
@@ -55,7 +59,7 @@ public class Account {
 	}
 	
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = MD5(password);
 	}
 
 	@Temporal(TemporalType.DATE)
@@ -99,6 +103,24 @@ public class Account {
 		password = null;
 		creationDate = new Date();
 		permissions = 0;
+	}
+	
+	private String MD5(String toEncrypt) {
+		String md5 = null;
+		
+		if (toEncrypt == null)
+			return null;
+		
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(toEncrypt.getBytes(), 0, toEncrypt.length());
+			
+			md5 = new BigInteger(1, md.digest()).toString(16);
+		} catch (NoSuchAlgorithmException e) {
+			return null;
+		}
+		
+		return md5;
 	}
 
 }

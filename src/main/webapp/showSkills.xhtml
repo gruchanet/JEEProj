@@ -22,12 +22,12 @@
 					<h:outputText value="#{item.type.desc}" />
 				</rich:column>
 				
-				<rich:column width="30px">
+				<rich:column width="30px" rendered="#{loginBean.loggedUser.permissions >= 4}">
 					<f:facet name="header">#{msg.actionEdit}</f:facet>
 					<h:commandLink value="#{msg.actionEdit}" action="#{skillBean.showEdit}" />
 				</rich:column>
 				
-				<rich:column width="50px">
+				<rich:column width="50px" rendered="#{loginBean.loggedUser.permissions >= 4}">
 					<f:facet name="header">#{msg.actionDelete}</f:facet>
 					<h:commandLink onclick="return confirm('Do you really want to delete this skill?')" value="#{msg.actionDelete}" action="#{skillBean.deleteSkill}" />
 				</rich:column>

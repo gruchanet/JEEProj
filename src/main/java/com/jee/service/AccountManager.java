@@ -29,6 +29,28 @@ public class AccountManager {
 		account = em.find(Account.class, account.getId());
 		em.remove(account);
 	}
+	
+	public Account getAccount(Long accountId) {
+		Account account = em.find(Account.class, accountId);
+		
+		return account;
+	}
+	
+	public String getAccountPassword(Long accountId) {
+		String password = (String) em.createNamedQuery("account.getPassword")
+			.setParameter("accountId", accountId)
+			.getSingleResult();
+		
+		return password;
+	}
+	
+	public void changePassword(Long accountId, String password) {
+		Account account = em.find(Account.class, accountId);
+		
+		account.setPassword(password);
+		
+		em.merge(account);
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<Account> getAllAccounts() {
@@ -43,15 +65,26 @@ public class AccountManager {
 		return players;
 	}
 	
+	public List<Player> getPlayers(Long accountId) {
+		Account account = em.find(Account.class, accountId);
+		
+		// lazy loading //
+		List<Player> players = new ArrayList<Player>(account.getPlayers());
+		return players;
+	}
+	
 	public boolean isPlayersEmpty(Long accountId) {
 //		List<Player> accountPlayers = em.createNamedQuery("account.players").setParameter("accountId", accountId).getResultList();
+		if (accountId == null)
+			return true;
+		
 		Account account = em.find(Account.class, accountId);
 		
 		List<Player> accountPlayers = new ArrayList<Player>(account.getPlayers());
 		
-		System.out.println("accountPlayers *size*: " + accountPlayers.size());
+//		System.out.println("accountPlayers *size*: " + accountPlayers.size());
 		
-		if (accountPlayers.isEmpty())
+		if (accountPlayers == null || accountPlayers.isEmpty())
 			return true;
 		
 		return false;

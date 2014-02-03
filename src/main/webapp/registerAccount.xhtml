@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="content">
+		<h:form id="registerForm">
+			<f:event type="postValidate" listener="#{registerBean.passwordsValidate}" />
+		
+			<h:panelGrid columns="3">
+
+				<h:outputText value="#{msg.accountLoginLabel}" />
+				<h:inputText id="login" value="#{registerBean.account.login}"
+					required="#{true}" requiredMessage=" * [Login] field must be filled">
+					<f:validator validatorId="uniqueAccountValidator" />
+				</h:inputText>
+				<h:message for="login" errorClass="errorMsg" />
+					
+				<h:outputText value="#{msg.accountPasswordLabel}" />
+				<h:panelGroup layout="block" id="divPassword">
+					<h:inputSecret id="password" value="#{registerBean.account.password}"
+						required="#{true}" requiredMessage=" * [Password] field must be filled">
+						<a4j:ajax event="keyup" render="ttPassword"/>
+						<a4j:ajax event="click" render="ttPassword"/>
+					</h:inputSecret>
+					<rich:tooltip id="ttPassword" styleClass="tooltip" layout="block">
+	               		<span style="white-space: nowrap">#{registerBean.account.password}</span>
+	            	</rich:tooltip>
+				</h:panelGroup>
+				<h:message for="password" errorClass="errorMsg" />
+				
+				<h:outputText value="#{msg.accountRptPasswordLabel}" />
+				<h:panelGroup layout="block" id="divRptPassword">
+					<h:inputSecret id="rptPassword" value="#{registerBean.rptPassword}"
+						required="#{true}" requiredMessage=" * [Repeat password] field must be filled">
+						<a4j:ajax event="keyup" render="ttRptPassword"/>
+						<a4j:ajax event="click" render="ttRptPassword"/>
+					</h:inputSecret>
+					<rich:tooltip id="ttRptPassword" styleClass="tooltip" style="white-space: nowrap" layout="block"
+						value="#{registerBean.rptPassword}" />
+				</h:panelGroup>
+				<h:message for="rptPassword" errorClass="errorMsg" />
+				
+			</h:panelGrid>
+
+			<h:commandButton value="#{msg.formOKButton}"
+				action="#{registerBean.registerAccount}" />
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

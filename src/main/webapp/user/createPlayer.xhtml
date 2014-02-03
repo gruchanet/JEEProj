@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="content">
+		<h:form id="playerForm">
+			<h:panelGrid columns="3">
+
+				<h:outputText value="#{msg.playerNameLabel}" />
+				<h:inputText id="name" value="#{loginBean.player.name}"
+					required="#{true}" requiredMessage=" * [Name] field must be filled">
+					<f:validator validatorId="uniquePlayerValidator" />
+				</h:inputText>
+				<h:message for="name" errorClass="errorMsg" />
+				
+			</h:panelGrid>
+
+			<h:commandButton value="#{msg.formOKButton}" action="#{loginBean.createPlayer}" />
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

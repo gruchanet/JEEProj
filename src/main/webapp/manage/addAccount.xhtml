@@ -9,16 +9,19 @@
 
 	<ui:define name="content">
 		<h:form id="accountForm">
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="3">
 
 				<h:outputText value="#{msg.accountLoginLabel}" />
 				<h:inputText id="login" value="#{accountBean.account.login}"
-					required="#{true}" requiredMessage="Login field must be filled" />
+					required="#{true}" requiredMessage=" * [Login] field must be filled">
+					<f:validator validatorId="uniqueAccountValidator" />
+				</h:inputText>
+				<h:message for="login" errorClass="errorMsg" />
 					
 				<h:outputText value="#{msg.accountPasswordLabel}" />
 				<h:panelGroup layout="block" id="divPassword">
 					<h:inputSecret id="password" value="#{accountBean.account.password}"
-						required="#{true}" requiredMessage="Password field must be filled">
+						required="#{true}" requiredMessage=" * [Password] field must be filled">
 						<a4j:ajax event="keyup" render="ttPassword"/>
 						<a4j:ajax event="click" render="ttPassword"/>
 					</h:inputSecret>
@@ -26,28 +29,25 @@
 	               		<span style="white-space: nowrap">#{accountBean.account.password}</span>
 	            	</rich:tooltip>
 				</h:panelGroup>
+				<h:message for="password" errorClass="errorMsg" />
 
 				<h:outputText value="#{msg.accountCreationDateLabel}" />
 				<rich:calendar value="#{accountBean.account.creationDate}"
 					id="calendar" datePattern="dd/MM/yyyy" dataModel="#{pastCalendarModel}"
-					cellWidth="24px" cellHeight="22px" style="width:200px" required="#{true}" requiredMessage="Date must be chosen">
+					cellWidth="24px" cellHeight="22px" style="width:200px" required="#{true}" requiredMessage=" * [Date] must be chosen">
 				</rich:calendar>
+				<h:message for="calendar" errorClass="errorMsg" />
 				
 				<h:outputText value="#{msg.accountPermissionsLabel}" />
 				<rich:inputNumberSlider id="permissions" value="#{accountBean.account.permissions}" minValue="0" 
-				maxValue="5" step="1" showTooltip="true" required="#{true}" requiredMessage="Select privileges from 0 - 5 range" converterMessage="">
+				maxValue="5" step="1" showTooltip="true" required="#{true}" requiredMessage=" * Select [privileges] from 0 - 5 range" converterMessage="">
 				</rich:inputNumberSlider>
+				<h:message for="permissions" errorClass="errorMsg" />
 				
 			</h:panelGrid>
 
 			<h:commandButton value="#{msg.formOKButton}"
 				action="#{accountBean.addAccount}" />
-
-			<h:panelGrid>
-				<h:messages for="" />
-				<h:messages id="messages" showDetail="#{true}"
-					showSummary="#{false}" />
-			</h:panelGrid>
 
 		</h:form>
 

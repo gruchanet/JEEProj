@@ -2,8 +2,8 @@ package com.jee.domain;
 
 public class AccountLite {
 	
-	private Long id;
-	private String login;
+	private Long id = null;
+	private String login = null;
 	private int permissions = 0;
 
 	public Long getId() {
@@ -31,6 +31,7 @@ public class AccountLite {
 	}
 	
 	public void clearFields() {
+		id = null;
 		login = null;
 		permissions = 0;
 	}

@@ -4,4 +4,31 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 	<display-name>jee_proj</display-name>
+	
+	<filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>com.jee.web.filters</filter-class>
+    </filter>
+   	<filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>com.jee.web.filters</filter-class>
+    </filter>
+    
+    <!-- Set the login filter to secure all the pages in the /manage/* path of the application  -->
+    <!-- <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/manage/*</url-pattern>
+    </filter-mapping> -->
+    
+    <!-- Set the login filter to secure all the pages in the /user/* path of the application  -->
+    <!-- <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/user/*</url-pattern>
+    </filter-mapping> -->
+ 
+    <!-- By default go to home page -->
+    <welcome-file-list>
+        <welcome-file>home.jsf</welcome-file>
+    </welcome-file-list>
+    
 </web-app>

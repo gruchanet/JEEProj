@@ -69,7 +69,7 @@ public class SkillFormBean implements Serializable {
 	public String showEdit() {
 		skillToEdit = skills.getRowData();
 		
-		return "editSkill";
+		return "/manage/editSkill";
 	}
 	
 }

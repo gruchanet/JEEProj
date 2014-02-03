@@ -11,14 +11,14 @@
 	
 		<h:panelGrid columns="2">
 		
-			<h:outputText value="#{msg.accountLoginLabel}" />
+			<h:outputText value="#{msg.accountLoginLabel}" rendered="#{not loginBean.logged}" />
 			<h:inputText id="login" value="#{loginBean.login}" size="16"
-					required="#{true}" requiredMessage="Empty login field" />
+					required="#{true}" requiredMessage=" * Empty login field" rendered="#{not loginBean.logged}" />
 					
-			<h:outputText value="#{msg.accountPasswordLabel}" />
-			<h:panelGroup layout="block">
+			<h:outputText value="#{msg.accountPasswordLabel}" rendered="#{not loginBean.logged}" />
+			<h:panelGroup layout="block" rendered="#{not loginBean.logged}">
 				<h:inputSecret id="password" value="#{loginBean.password}" size="16"
-					required="#{true}" requiredMessage="Empty password field">
+					required="#{true}" requiredMessage=" * Empty password field">
 					<a4j:ajax event="keyup" render="ttPassword"/>
 					<a4j:ajax event="click" render="ttPassword"/>
 				</h:inputSecret>
@@ -29,8 +29,15 @@
 			
 		</h:panelGrid>
 		
-		<h:commandButton id="loginBtn" value="#{msg.formLoginButton}"
-			 action="#{loginBean.loginUser}" />
+		<h:commandButton id="loginBtn" value=" #{msg.formLoginButton} "
+			 action="#{loginBean.loginUser}" rendered="#{not loginBean.logged}" />
+		
+		
+		<h:outputText value="#{msg.loggedAsLabel}" rendered="#{loginBean.logged}" />
+		<b><h:outputText value="#{loginBean.loggedUser.login}" rendered="#{loginBean.logged}" /> </b>
+			 
+		<h:commandButton id="logoutBtn" value=" #{msg.formLogoutButton} "
+			 action="#{loginBean.logoutUser}" rendered="#{loginBean.logged}" />
 			
 		<h:panelGrid>
 			<h:message for="login" errorClass="errorMsg" />

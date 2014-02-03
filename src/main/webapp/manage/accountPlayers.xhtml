@@ -10,16 +10,11 @@
 	<ui:define name="content">
 		<h:form styleClass="tableDump">
 			<rich:extendedDataTable id="table" headerClass="tableHeader"
-			value="#{playerBean.allPlayers}" sortPriority="#{sortingBean.sortPriorities}" var="item" style="height: 256px;">
-				<f:facet name="header">#{msg.playerAllLabel}</f:facet>
+			value="#{accountBean.accountPlayers}" sortPriority="#{sortingBean.sortPriorities}" var="item" style="height: 256px;">
+				<f:facet name="header">Account players</f:facet>
 				<rich:column sortBy="#{item.name}" sortOrder="#{sortingBean.sortsOrders['name']}">
 					<f:facet name="header">#{msg.playerNameLabel}</f:facet>
 					<h:outputText value="#{item.name}" />
-				</rich:column>
-				
-				<rich:column sortBy="#{item.account.login}" sortOrder="#{sortingBean.sortsOrders['account']}">
-					<f:facet name="header">#{msg.playerAccountLabel}</f:facet>
-					<h:outputText value="#{item.account.login}" />
 				</rich:column>
 
 				<rich:column sortBy="#{item.level}" sortOrder="#{sortingBean.sortsOrders['level']}">
@@ -47,24 +42,9 @@
 					<h:outputText value="#{item.stats.intelligence}" />
 				</rich:column>
 				
-				<rich:column width="30px" rendered="#{loginBean.loggedUser.permissions >= 4}">
-					<f:facet name="header">#{msg.actionEdit}</f:facet>
-					<h:commandLink value="#{msg.actionEdit}" action="#{playerBean.showEdit}" />
-				</rich:column>
-				
 				<rich:column width="50px" rendered="#{loginBean.loggedUser.permissions >= 4}">
 					<f:facet name="header">#{msg.actionDelete}</f:facet>
-					<h:commandLink onclick="return confirm('Do you really want to delete this player?')" value="#{msg.actionDelete}" action="#{playerBean.deletePlayer}" />
-				</rich:column>
-				
-				<rich:column width="40px">
-					<f:facet name="header">#{msg.playerSkillsLabel}</f:facet>
-					<h:commandLink value="#{msg.playerSkillsLabel}" action="#{playerBean.showSkills}" rendered="#{not playerBean.skillsEmpty}"/>
-				</rich:column>
-				
-				<rich:column width="35px" rendered="#{loginBean.loggedUser.permissions >= 4}">
-					<f:facet name="header">#{msg.playerBuffLabel}</f:facet>
-					<h:commandLink value="#{msg.playerBuffLabel}" action="#{playerBean.buffPlayer}" />
+					<h:commandLink onclick="return confirm('Do you really want to unpin player from this account?')" value="#{msg.actionDelete}" action="#{accountBean.disposePlayer}" />
 				</rich:column>
 
 			</rich:extendedDataTable>

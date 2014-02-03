@@ -9,27 +9,25 @@
 
 	<ui:define name="content">
 		<h:form id="skillForm">
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="3">
 
 				<h:outputText value="#{msg.skillNameLabel}" />
-				<h:inputText id="name" value="#{skillBean.skillToEdit.name}"
-					required="#{true}" />
+				<h:inputText id="name" value="#{skillBean.skill.name}"
+					required="#{true}" requiredMessage=" * [Name] field must be filled">	
+					<f:validator validatorId="uniqueSkillValidator" />
+				</h:inputText>
+				<h:message for="name" errorClass="errorMsg" />
 					
 				<h:outputText value="#{msg.skillTypeLabel}" />
-				<h:selectOneMenu value="#{skillBean.skillToEdit.type}">
+				<h:selectOneMenu id="type" value="#{skillBean.skill.type}" required="#{true}" requiredMessage=" * [Type] must be chosen">
 					<f:selectItems value="#{skillTypeBean.skillTypeValues}" />
 				</h:selectOneMenu>
+				<h:message for="type" errorClass="errorMsg" />
 				
 			</h:panelGrid>
 
-			<h:commandButton value="#{msg.formSaveButton}"
-				action="#{skillBean.editSkill}" />
-
-			<h:panelGrid>
-				<h:messages for="" />
-				<h:messages id="messages" showDetail="#{true}"
-					showSummary="#{false}" />
-			</h:panelGrid>
+			<h:commandButton value="#{msg.formOKButton}"
+				action="#{skillBean.addSkill}" />
 
 		</h:form>
 
