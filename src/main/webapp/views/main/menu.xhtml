@@ -12,7 +12,7 @@
 	  <ul>
 	    <h:button styleClass="menuItem" outcome="/registerAccount?faces-redirect=true" value="#{msg.registerLabel}" rendered="#{not loginBean.logged}" />
     	<h:button styleClass="menuItem" outcome="/user/createPlayer" value="#{msg.createCharacterLabel}" rendered="#{loginBean.logged and loginBean.loggedUser.permissions le 3}" />
-    	<h:button styleClass="menuItem" outcome="/user/players" value="#{msg.playersLabel}" rendered="#{loginBean.logged and not loginBean.playersEmpty}" />
+    	<h:button styleClass="menuItem" outcome="/user/players" value="#{msg.playersLabel}" rendered="#{loginBean.logged and loginBean.loggedUser.permissions le 3 and not loginBean.playersEmpty}" />
 	  	<h:button styleClass="menuItem" outcome="/manage/addAccount?faces-redirect=true" value="#{msg.accountAddLabel}" rendered="#{loginBean.loggedUser.permissions >= 4}" />
 	  	<h:button styleClass="menuItem" outcome="/manage/addPlayer?faces-redirect=true" value="#{msg.playerAddLabel}" rendered="#{loginBean.loggedUser.permissions >= 4}" />
 	  	<h:button styleClass="menuItem" outcome="/manage/addSkill?faces-redirect=true" value="#{msg.skillAddLabel}" rendered="#{loginBean.loggedUser.permissions >= 4}" />

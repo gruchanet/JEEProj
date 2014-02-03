@@ -23,25 +23,14 @@
 				<h:outputText value="#{msg.accountPasswordLabel}" />
 				<h:panelGroup layout="block" id="divPassword">
 					<h:inputSecret id="password" value="#{registerBean.account.password}"
-						required="#{true}" requiredMessage=" * [Password] field must be filled">
-						<a4j:ajax event="keyup" render="ttPassword"/>
-						<a4j:ajax event="click" render="ttPassword"/>
-					</h:inputSecret>
-					<rich:tooltip id="ttPassword" styleClass="tooltip" layout="block">
-	               		<span style="white-space: nowrap">#{registerBean.account.password}</span>
-	            	</rich:tooltip>
+						required="#{true}" requiredMessage=" * [Password] field must be filled" />
 				</h:panelGroup>
 				<h:message for="password" errorClass="errorMsg" />
 				
 				<h:outputText value="#{msg.accountRptPasswordLabel}" />
 				<h:panelGroup layout="block" id="divRptPassword">
 					<h:inputSecret id="rptPassword" value="#{registerBean.rptPassword}"
-						required="#{true}" requiredMessage=" * [Repeat password] field must be filled">
-						<a4j:ajax event="keyup" render="ttRptPassword"/>
-						<a4j:ajax event="click" render="ttRptPassword"/>
-					</h:inputSecret>
-					<rich:tooltip id="ttRptPassword" styleClass="tooltip" style="white-space: nowrap" layout="block"
-						value="#{registerBean.rptPassword}" />
+						required="#{true}" requiredMessage=" * [Repeat password] field must be filled" />
 				</h:panelGroup>
 				<h:message for="rptPassword" errorClass="errorMsg" />
 				

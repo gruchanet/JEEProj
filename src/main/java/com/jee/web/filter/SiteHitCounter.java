@@ -1,4 +1,4 @@
-package com.jee.web.filters;
+package com.jee.web.filter;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

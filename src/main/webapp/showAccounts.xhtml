@@ -8,7 +8,7 @@
 	template="/templates/default.xhtml">
 
 	<ui:define name="content">
-		<h:form styleClass="tableDump">
+		<h:form id="tableDump" styleClass="tableDump">
 			<rich:extendedDataTable id="table" headerClass="tableHeader"
 			value="#{accountBean.allAccounts}" sortPriority="#{sortingBean.sortPriorities}" var="item" style="height: 256px;">
 				<f:facet name="header">#{msg.accountAllLabel}</f:facet>
@@ -30,6 +30,11 @@
 				<rich:column sortBy="#{item.permissions}" sortOrder="#{sortingBean.sortsOrders['permissions']}">
 					<f:facet name="header">#{msg.accountPermissionsLabel}</f:facet>
 					<h:outputText value="#{item.permissions}" />
+				</rich:column>
+				
+				<rich:column id="loggedFlag" sortBy="#{item.logged}" sortOrder="#{sortingBean.sortsOrders['logged']}" rendered="#{loginBean.loggedUser.permissions >= 4}">
+					<f:facet name="header">#{msg.accountLoggedLabel}</f:facet>
+					<h:outputText value="#{item.logged}" />
 				</rich:column>
 				
 				<rich:column width="30px" rendered="#{loginBean.loggedUser.permissions >= 4}">
@@ -56,6 +61,10 @@
 			<fieldset style="background-color: #D4CFC7; border-bottom: 1px solid #C4C0C9;">
 				<a4j:commandButton execute="@this" value="Reset Sorting"
                                action="#{sortingBean.reset}" render="table"/>
+                <h:panelGrid>
+					<h:message for="" errorClass="errorMsg" />
+				</h:panelGrid>
+                
             </fieldset>
 		</h:form>
 

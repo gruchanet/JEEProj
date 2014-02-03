@@ -1,4 +1,4 @@
-package com.jee.web;
+package com.jee.web.beans;
 
 import java.io.Serializable;
 import java.math.BigInteger;
@@ -129,6 +129,9 @@ public class LoginFormBean implements Serializable {
 			loggedUser.setId(accountToLogin.getId());
 			loggedUser.setLogin(accountToLogin.getLogin());
 			loggedUser.setPermissions(accountToLogin.getPermissions());
+			// setting 'logged' flag to TRUE
+			accountToLogin.setLogged(true);
+			am.editAccount(accountToLogin);
 			
 			context.addMessage("loginForm:loginBtn", 
 					new FacesMessage(FacesMessage.SEVERITY_INFO, " Login successfully as " + loggedUser.getLogin() + "!", null));
@@ -144,6 +147,11 @@ public class LoginFormBean implements Serializable {
 	}
 	
 	public String logoutUser() {
+		Account accountToLogout = am.getAccount(loggedUser.getId());
+		// setting 'logged' flag to FALSE
+		accountToLogout.setLogged(false);
+		am.editAccount(accountToLogout);
+		
 		loggedUser.clearFields();
 		accountPlayers = new ListDataModel<Player>();
 		

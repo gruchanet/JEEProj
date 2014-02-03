@@ -17,19 +17,6 @@
 					<f:validator validatorId="uniqueAccountValidator" />
 				</h:inputText>
 				<h:message for="login" errorClass="errorMsg" />
-					
-				<h:outputText value="#{msg.accountPasswordLabel}" />
-				<h:panelGroup layout="block" id="divPassword">
-					<h:inputSecret id="password" value="#{accountBean.accountToEdit.password}"
-						required="#{true}" redisplay="true" requiredMessage=" * [Password] field must be filled">
-						<a4j:ajax event="keyup" render="ttPassword"/>
-						<a4j:ajax event="click" render="ttPassword"/>
-					</h:inputSecret>
-					<rich:tooltip id="ttPassword" styleClass="tooltip" layout="block">
-	               		<span style="white-space: nowrap">#{accountBean.accountToEdit.password}</span>
-	            	</rich:tooltip>
-				</h:panelGroup>
-				<h:message for="password" errorClass="errorMsg" />
 
 				<h:outputText value="#{msg.accountCreationDateLabel}" />
 				<rich:calendar value="#{accountBean.accountToEdit.creationDate}"

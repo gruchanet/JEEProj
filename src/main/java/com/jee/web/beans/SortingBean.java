@@ -1,4 +1,4 @@
-package com.jee.web;
+package com.jee.web.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;

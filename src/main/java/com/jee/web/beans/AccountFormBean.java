@@ -1,10 +1,12 @@
-package com.jee.web;
+package com.jee.web.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -99,17 +101,37 @@ public class AccountFormBean implements Serializable {
 	}
 	
 	public String editAccount() {
-		am.editAccount(accountToEdit);
-		
-		// optional //
-		accountToEdit = new Account();
-		
-		return "showAccounts";
+		if (!accountToEdit.isLogged()) {
+			
+			am.editAccount(accountToEdit);
+			
+			// optional //
+			accountToEdit = new Account();
+			
+			return "showAccounts";
+		}
+		else {
+			FacesContext context = FacesContext.getCurrentInstance();
+			
+			context.addMessage("accountForm:login", 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, " * Cannot edit logged account!", null));
+			
+			return null;
+		}
 	}
 	
 	public String deleteAccount() {
 		Account accountToDelete = accounts.getRowData();
-		am.deleteAccount(accountToDelete);
+		
+		if (!accountToDelete.isLogged()) {
+			am.deleteAccount(accountToDelete);
+		}
+		else {
+			FacesContext context = FacesContext.getCurrentInstance();
+			
+			context.addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, " * Cannot delete logged account!", null));
+		}
 		
 		return null;
 	}

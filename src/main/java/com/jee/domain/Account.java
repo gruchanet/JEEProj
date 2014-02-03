@@ -34,6 +34,8 @@ public class Account {
 	private Date creationDate = new Date();
 	private int permissions = 0;
 	
+	private boolean logged = false;
+	
 	private List<Player> players = new ArrayList<Player>(0);
 
 	@Id
@@ -79,6 +81,14 @@ public class Account {
 		this.permissions = permissions;
 	}
 	
+	public boolean isLogged() {
+		return logged;
+	}
+
+	public void setLogged(boolean logged) {
+		this.logged = logged;
+	}
+
 	// lazy loading //
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY,
 			mappedBy="account", targetEntity=Player.class)
@@ -103,6 +113,7 @@ public class Account {
 		password = null;
 		creationDate = new Date();
 		permissions = 0;
+		logged = false;
 	}
 	
 	private String MD5(String toEncrypt) {

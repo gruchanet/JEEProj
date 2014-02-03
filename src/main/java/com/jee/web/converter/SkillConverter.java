@@ -1,4 +1,4 @@
-package com.jee.web;
+package com.jee.web.converter;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
